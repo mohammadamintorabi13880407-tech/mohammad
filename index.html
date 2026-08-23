@@ -1,1 +1,921 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>باشگاه ربات های هوشمند | فروشگاه محصولات و راهکارهای هوش مصنوعی</title>
+<meta name="description" content="ربات‌های هوشمند، ابزارهای AI، اتوماسیون و طراحی سایت؛ سفارش آسان از طریق بله.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231e6b47'/%3E%3Cpath d='M32 6l3 8 8 3-8 3-3 8-3-8-8-3 8-3z' fill='%23f4c542'/%3E%3Ccircle cx='32' cy='42' r='13' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://v1.fontapi.ir/css/IRANYekan" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,300..600&display=swap" rel="stylesheet">
+<style>
+:root{--green:#22a55b;--green-d:#1e6b47;--ink:#23272e;--mut:#8b919a;--bg:#f7f8f9;--line:#eef0f2;--gray:#ececec;--blue:#3d8fd8;--blue-l:#bfdcf5;--pink:#fdecec;--red:#e05252;--gold:#f5b301;--sh:0 8px 24px rgba(35,39,46,.08)}
+{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'IRANYekan','Vazirmatn',Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.9}
+button,input,select,textarea{font-family:inherit}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{border:0;background:none;cursor:pointer}
+.wrap{max-width:1240px;margin:auto;padding:0 16px}
+#loader{position:fixed;inset:0;background:#fff;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s}
+#loader.hide{opacity:0;pointer-events:none}
+#loader svg{width:74px;height:74px;animation:pop 1.1s ease-in-out infinite alternate}
+#loader b{font-size:14px;font-weight:900}
+#loader small{font-size:11px;color:var(--mut)}
+@keyframes pop{to{transform:scale(1.14) rotate(-3deg)}}
+#prog{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--green),var(--gold));z-index:98;border-radius:0 0 0 4px}
+#glow{position:fixed;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#22a55b12,transparent 60%);pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
+header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(--line)}
+.hbar{display:flex;align-items:center;gap:16px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo svg{width:46px;height:46px;filter:drop-shadow(0 4px 10px rgba(30,107,71,.35))}
+.logo b{font-size:15px;font-weight:900;display:block;line-height:1.7}
+.logo .en{display:block;font-size:8px;letter-spacing:2.5px;color:var(--mut);font-weight:500}
+.logo small{font-size:11px;color:var(--mut)}
+.logo small em{color:var(--gold);font-style:normal}
+.hsearch{flex:1;max-width:560px;margin:0 auto;position:relative}
+.hsearch input{width:100%;height:48px;border:0;background:#f2f3f5;border-radius:12px;padding:0 46px 0 16px;font-size:13px;outline:none}
+.hsearch input:focus{background:#eef6f0;box-shadow:0 0 0 2px var(--green)}
+.hsearch svg{position:absolute;right:14px;top:14px;width:20px;height:20px;stroke:var(--mut)}
+.hact{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.htel{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px}
+.htel svg{width:18px;height:18px;stroke:var(--ink)}
+.hact .sep{width:1px;height:34px;background:var(--line)}
+.cartbox{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:7px 14px;transition:.2s}
+.cartbox:hover{border-color:var(--green)}
+.cartbox svg{width:22px;height:22px;stroke:var(--ink)}
+.cartbox b{font-size:12px;display:block;line-height:1.5}
+.cartbox small{font-size:11px;color:var(--mut)}
+.iconbtn{border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:800;color:var(--green-d);flex-shrink:0;transition:.2s}
+.iconbtn:hover{border-color:var(--green)}
+.burger{display:none;font-size:22px}
+nav.main{display:flex;align-items:center;gap:4px;border-top:1px solid var(--line);padding:4px 0;overflow-x:auto}
+nav.main a{padding:10px 12px;font-size:13px;font-weight:600;color:#565b63;white-space:nowrap;border-radius:10px}
+nav.main a:hover{color:var(--green);background:#f0f9f4}
+.login{display:flex;align-items:center;gap:8px;margin-inline-start:auto;font-size:13px;font-weight:700;color:#565b63;padding:8px 12px;border-radius:10px}
+.login:hover{color:var(--green)}
+.login svg{width:18px;height:18px;stroke:currentColor}
+.hero{padding:24px 0 8px}
+.hbanner{position:relative;background:var(--gray);border-radius:20px;padding:34px;display:grid;grid-template-columns:1.05fr .95fr .8fr;gap:22px;align-items:center;overflow:hidden}
+.hbanner::before{content:'';position:absolute;inset:0;background:radial-gradient(560px circle at var(--mx,70%) var(--my,30%),#ffffff2b,transparent 60%);pointer-events:none;z-index:2}
+.hbanner>{position:relative;z-index:1}
+.hbanner h1{font-size:clamp(34px,5.5vw,58px);font-weight:900;color:#2b2f36;line-height:1.5}
+.hbanner p{color:#5a5f66;font-weight:600;margin:2px 0 12px;font-size:clamp(13px,1.6vw,17px)}
+.typeline{font-size:14px;color:var(--green-d);font-weight:800;min-height:28px;margin:0 0 14px}
+.caret{color:var(--green);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.mini{display:flex;flex-wrap:wrap}
+.mini div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#3c4148;padding:0 18px;border-inline-start:1px solid #d5d8db}
+.mini div:first-child{border:0;padding-right:0}
+.mini svg{width:24px;height:24px;stroke:var(--green-d)}
+.hbanner img{border-radius:16px;height:240px;width:100%;object-fit:cover;box-shadow:0 18px 40px rgba(0,0,0,.18);animation:kb 14s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.1) translate(2%,-2%)}}
+.callbox{text-align:center}
+.callbox .nums{background:#3a3f45;color:#fff;border-radius:14px;padding:12px 26px;font-size:clamp(18px,2.4vw,26px);font-weight:900;line-height:1.9;display:inline-block}
+.callbox b{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:900;color:#2b2f36;margin-top:10px}
+.pt{position:absolute;bottom:-10px;width:7px;height:7px;border-radius:50%;background:#ffffffb0;animation:float 6s linear infinite;pointer-events:none;z-index:0}
+@keyframes float{0%{transform:translateY(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-260px);opacity:0}}
+.shapes{position:absolute;inset:0;pointer-events:none;z-index:0;perspective:900px}
+.ring3d{position:absolute;top:22%;left:6%;width:86px;height:86px;border-radius:50%;border:3px solid #22a55b6e;animation:ring3d 9s linear infinite}
+@keyframes ring3d{from{transform:rotateX(66deg) rotateZ(0)}to{transform:rotateX(66deg) rotateZ(360deg)}}
+.greenbar{position:relative;background:var(--green);border-radius:14px;margin:18px 0;height:58px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.greenbar .fl{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;opacity:.3;font-size:14px;pointer-events:none}
+.greenbar a{position:relative;background:#fff;color:#111;font-weight:800;font-size:14px;padding:3px 12px;border-radius:6px}
+.ticker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 16px;margin-top:16px;font-size:12px;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 #22a55b88;animation:pulse 1.6s infinite;flex-shrink:0}
+@keyframes pulse{70%{box-shadow:0 0 0 9px #22a55b00}100%{box-shadow:0 0 0 0 #22a55b00}}
+#tickTxt{transition:opacity .4s}
+#liveDate{color:var(--mut);font-weight:600}
+#online{color:var(--green-d);font-weight:800}
+.cdpill{margin-inline-start:auto;background:var(--pink);color:var(--red);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800}
+.banners{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.bn{position:relative;background:var(--gray);border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;min-height:150px;cursor:pointer;transition:box-shadow .25s;will-change:transform}
+.bn.big{min-height:220px}
+.bn .t b{font-size:clamp(24px,3.6vw,44px);font-weight:900;color:#2b2f36;display:block;line-height:1.6}
+.bn .t span{color:#5a5f66;font-weight:600;font-size:clamp(13px,1.7vw,19px)}
+.bn img{width:44%;object-fit:contain;filter:drop-shadow(10px 10px 18px rgba(0,0,0,.18))}
+.bn.big img{max-height:200px}
+.bn:not(.big) img{max-height:140px}
+.bn:hover{box-shadow:var(--sh)}
+.bn::after,.pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),#ffffff30,transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none;border-radius:inherit}
+.bn:hover::after,.pcard:hover::after{opacity:1}
+.banners .row2{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stories{position:relative;margin:26px 0}
+.strack{display:flex;gap:18px;overflow-x:auto;padding:6px 4px 14px;scrollbar-width:none}
+.strack::-webkit-scrollbar{display:none}
+.story{flex-shrink:0;text-align:center;width:96px}
+.story .ring{padding:3px;border-radius:50%;background:linear-gradient(45deg,#f09433,#dc2743,#bc1880,#7c3aed);display:block}
+.story img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid #fff}
+.story .lb{font-size:11px;font-weight:700;color:#3c4148;display:block;margin-top:6px}
+.sarr{position:absolute;top:38px;width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:var(--sh);font-size:16px;z-index:2;display:flex;align-items:center;justify-content:center}
+.sarr.r{left:-6px}.sarr.l{right:-6px}
+.divider{height:2px;max-width:1240px;margin:26px auto 0;background:linear-gradient(90deg,transparent,var(--green),var(--gold),transparent);background-size:200% 100%;animation:dslide 3s linear infinite;border-radius:2px}
+@keyframes dslide{to{background-position:200% 0}}
+section{padding:44px 0}
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:22px}
+.shead h2{font-size:clamp(19px,2.6vw,26px);font-weight:800}
+.shead p{color:var(--mut);font-size:13px}
+.ovl{display:none;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:4px}
+.btnline{border:1px solid #d9dce0;background:#fff;border-radius:12px;padding:10px 26px;font-size:13px;font-weight:700;transition:.2s}
+.btnline:hover{border-color:var(--green);color:var(--green)}
+.btnline:active{transform:scale(.95)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:30px;padding:7px 16px;font-size:12px;font-weight:700;color:#565b63;transition:.2s}
+.chip:active{transform:scale(.94)}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pcard{position:relative;background:#fff;border-radius:14px;padding:12px 12px 16px;display:flex;flex-direction:column;text-align:center;transition:box-shadow .25s;will-change:transform;overflow:hidden}
+.pcard:hover{box-shadow:var(--sh)}
+.pimg{position:relative;border-radius:12px;overflow:hidden;height:220px;background:#f2f3f5}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.pcard:hover .pimg img{transform:scale(1.06)}
+.pbadge{position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:3px 14px;border-radius:20px}
+.pbrand{font-size:11px;color:#9aa1a9;margin:10px 4px 2px}
+.pcard h3{font-size:13px;font-weight:700;color:#2b2f36;line-height:1.9;margin:0 4px;flex:1}
+.pprice{position:relative;margin:8px 4px 10px}
+.pprice s{display:block;color:#b6bcc4;font-size:11px}
+.pprice .now{font-weight:800;font-size:15px}
+.pprice .now i{font-style:normal;font-size:11px;color:var(--mut);font-weight:500}
+.pprice .off{position:absolute;left:0;bottom:0;background:var(--pink);color:var(--red);font-size:10px;font-weight:800;padding:2px 9px;border-radius:8px}
+.add{width:100%;border:1px solid var(--blue-l);color:var(--blue);border-radius:10px;padding:10px 6px;font-size:12px;font-weight:700;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.add:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.add:active{transform:scale(.94)}
+.ble{display:block;margin:7px 4px 0;font-size:11px;font-weight:800;color:var(--green-d)}
+.ble:hover{text-decoration:underline}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust div{display:flex;align-items:center;gap:14px;justify-content:center;padding:26px 10px;border-inline-start:1px solid var(--line)}
+.trust div:first-child{border-inline-start:0}
+.trust .ic{width:56px;height:56px;border:1px solid var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust svg{width:26px;height:26px;stroke:var(--ink)}
+.trust b{font-size:14px;display:block}
+.trust small{color:var(--mut);font-size:11px;display:block}
+.marq{overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
+.marq .trk{display:flex;gap:44px;width:max-content;padding:12px 22px;animation:marq 22s linear infinite;font-weight:900;font-size:14px;color:#c9d1d7;white-space:nowrap}
+.marq:hover .trk{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(50%)}}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 14px;text-align:center;transition:.25s}
+.step:hover{transform:translateY(-4px) rotateX(6deg);box-shadow:var(--sh)}
+.step i{font-style:normal;font-weight:900;font-size:30px;color:#d8efe2;display:block}
+.step h4{margin:6px 0 4px;font-size:14px}
+.step p{font-size:12px;color:var(--mut)}
+.stats{margin-top:18px;background:var(--green);border-radius:18px;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);padding:24px;text-align:center}
+.stats b{font-size:26px;font-weight:900;display:block}
+.stats span{font-size:12px;opacity:.92}
+.srv{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.flip{perspective:1200px}
+.flip .in{position:relative;min-height:180px;transform-style:preserve-3d;transition:transform .7s}
+.flip:hover .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:20px}
+.flip .f{background:#fff;border:1px solid var(--line)}
+.flip .b{transform:rotateY(180deg);background:linear-gradient(135deg,#2a8a5c,#175c3c);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.flip .b p{font-size:12px;opacity:.92}
+.flip .b a{background:#fff;color:var(--green-d);border-radius:10px;padding:7px 18px;font-size:12px;font-weight:800}
+.srv .ic{width:46px;height:46px;border-radius:12px;background:#e8f7ee;color:var(--green-d);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.srv h4{font-size:14px;margin-bottom:4px}
+.srv .f p{font-size:12px;color:var(--mut)}
+.tst{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.tst div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;font-size:13px;transition:.25s}
+.tst div:hover{transform:translateY(-4px) rotateX(4deg);box-shadow:var(--sh)}
+.stars{color:var(--gold);letter-spacing:2px}
+.tst b{display:block;margin-top:8px;color:var(--green-d);font-size:12px}
+.blog{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.post{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.post:hover{box-shadow:var(--sh);transform:translateY(-4px)}
+.post img{height:150px;width:100%;object-fit:cover}
+.post .bd{padding:14px}
+.post h4{font-size:13px}
+.post span{font-size:11px;color:var(--mut)}
+.faq{max-width:860px;margin:auto;display:flex;flex-direction:column;gap:12px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.qa button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;font-size:13px;font-weight:700;color:var(--ink)}
+.qa button svg{width:18px;height:18px;stroke:var(--mut);transition:.3s;flex-shrink:0}
+.qa p{max-height:0;overflow:hidden;transition:.3s;padding:0 20px;font-size:13px;color:var(--mut)}
+.qa.open p{max-height:220px;padding-bottom:16px}
+.qa.open button svg{transform:rotate(180deg);stroke:var(--green)}
+.cta{background:var(--gray);border-radius:20px;text-align:center;padding:46px 20px;position:relative;overflow:hidden}
+.cta h2{font-weight:900;font-size:clamp(19px,3vw,26px);color:#2b2f36}
+.cta p{color:#5a5f66;margin:8px 0 20px}
+.btn-g{background:var(--green);color:#fff;border-radius:12px;padding:12px 26px;font-weight:800;font-size:14px;display:inline-flex;gap:8px;align-items:center;transition:.2s;box-shadow:0 6px 0 #14522f}
+.btn-g:active{transform:translateY(3px)!important;box-shadow:0 2px 0 #14522f}
+.btn-w{background:#fff;border:1px solid #d9dce0;border-radius:12px;padding:12px 26px;font-weight:800;font-size:14px;display:inline-flex;align-items:center;margin-inline-start:8px}
+.btn-w:hover{border-color:var(--green);color:var(--green)}
+footer{background:#fff;border-top:1px solid var(--line);margin-top:50px;padding:46px 0 0}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:26px}
+footer h5{font-size:14px;margin-bottom:14px}
+footer .fl a{display:block;font-size:12px;color:#565b63;padding:4px 0}
+footer .fl a:hover{color:var(--green)}
+.crow{display:flex;align-items:center;gap:10px;font-size:12px;color:#565b63;padding:5px 0}
+.crow .ic{width:38px;height:38px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.crow svg{width:17px;height:17px;stroke:var(--ink)}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badges div{width:86px;height:100px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mut);text-align:center;background:var(--bg)}
+.fbot{border-top:1px solid var(--line);margin-top:34px;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.socials{display:flex;gap:8px}
+.socials button{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;font-size:16px;background:#fff;transition:.2s}
+.socials button:hover{border-color:var(--green);transform:translateY(-2px)}
+.fbot small{color:var(--mut);font-size:11px}
+#toast{position:fixed;bottom:88px;right:50%;transform:translateX(50%) translateY(16px);background:var(--ink);color:#fff;padding:11px 24px;border-radius:30px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:99}
+#toast.show{opacity:1;transform:translateX(50%)}
+#top{position:fixed;bottom:78px;left:14px;width:44px;height:44px;border-radius:12px;background:var(--green);color:#fff;font-size:17px;opacity:0;pointer-events:none;transition:.3s;z-index:60}
+#top.show{opacity:1;pointer-events:auto}
+.bnav{position:fixed;bottom:0;right:0;left:0;background:#fff;border-top:1px solid var(--line);display:none;justify-content:space-around;padding:7px 4px;z-index:70}
+.bnav a{font-size:10px;font-weight:700;color:var(--mut);text-align:center}
+.bnav b{display:block;font-size:17px}
+.bnav a.hot{color:var(--green)}
+.rv{opacity:0;transform:translateY(26px);transition:.7s}
+.rv.in{opacity:1;transform:none}
+.spark{position:fixed;width:8px;height:8px;border-radius:50%;z-index:999;pointer-events:none;animation:fly .7s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+#spop{position:fixed;bottom:132px;left:14px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--sh);z-index:65;max-width:270px;transform:translateY(20px);opacity:0;transition:.45s;pointer-events:none}
+#spop.show{transform:none;opacity:1}
+#spop img{width:44px;height:44px;border-radius:10px;object-fit:cover;flex-shrink:0}
+#spop span{font-size:11px;font-weight:700;line-height:1.8}
+#mascot{position:fixed;bottom:76px;right:14px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2a8a5c,#175c3c);box-shadow:0 10px 24px rgba(23,92,60,.45);z-index:75;display:flex;align-items:center;justify-content:center;transition:.25s}
+#mascot:hover{transform:scale(1.08)}
+#mascot svg{width:40px;height:40px}
+#mascot .eye{transform-box:fill-box;transform-origin:center;animation:blinkE 4s infinite}
+@keyframes blinkE{0%,91%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+#mascot .ringp{position:absolute;inset:0;border-radius:50%;border:2px solid #22a55b77;animation:pulse2 2s infinite}
+@keyframes pulse2{0%{transform:scale(1);opacity:1}100%{transform:scale(1.55);opacity:0}}
+#chat{position:fixed;bottom:146px;right:14px;width:min(320px,92vw);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.2);z-index:75;display:none;flex-direction:column;overflow:hidden}
+#chat.open{display:flex}
+#chat .hd{background:linear-gradient(135deg,#2a8a5c,#175c3c);color:#fff;padding:12px 16px;font-size:13px;font-weight:800;display:flex;gap:8px;align-items:center}
+#chat .hd .dot{background:#7dffb0}
+#chat .bd{height:260px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.msg{max-width:82%;padding:9px 12px;border-radius:12px;font-size:12px;line-height:1.8;white-space:pre-wrap}
+.msg.bot{background:#fff;border:1px solid var(--line);align-self:flex-start}
+.msg.us{background:var(--green);color:#fff;align-self:flex-end}
+.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9aa1a9;margin:0 1.5px;animation:tp 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes tp{30%{transform:translateY(-4px)}}
+.qrow{display:flex;gap:6px;padding:8px 10px 0;background:#fff;flex-wrap:wrap}
+.qchip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#565b63}
+#chat .ft{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line);background:#fff}
+#chat input{flex:1;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:12px;outline:none}
+#chat input:focus{border-color:var(--green)}
+#chat .send{background:var(--green);color:#fff;border-radius:10px;padding:0 14px;font-weight:800}
+#adv{position:fixed;inset:0;background:rgba(8,40,36,.5);backdrop-filter:blur(4px);z-index:150;display:none;align-items:center;justify-content:center}
+#adv.open{display:flex}
+.abox{background:#fff;border-radius:18px;padding:22px;width:min(430px,92%)}
+.abox textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12px;margin:8px 0;outline:none}
+#advOut{font-size:12px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px;margin-top:10px;white-space:pre-wrap;min-height:36px}
+#abtnClose{background:#fff;color:var(--red);border:1px solid var(--pink)}
+#admin{position:fixed;inset:0;background:#f4f6f8;z-index:200;display:none;flex-direction:column}
+#admin.open{display:flex}
+#ad-hd{background:#12312d;color:#fff;padding:12px 20px;display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap}
+#ad-hd .x{margin-inline-start:auto;background:#ffffff22;color:#fff;border-radius:10px;padding:6px 14px;font-size:12px}
+#ad-bd{flex:1;display:flex;overflow:hidden}
+#ad-side{width:190px;background:#fff;border-inline-end:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex-shrink:0}
+#ad-side button{text-align:right;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:700;color:#565b63}
+#ad-side button.on{background:var(--green);color:#fff}
+#ad-main{flex:1;overflow-y:auto;padding:22px}
+.adcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.adcard h4{font-size:14px;margin-bottom:12px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.frow.one{grid-template-columns:1fr}
+.fin label{display:block;font-size:11px;font-weight:700;color:var(--mut);margin-bottom:4px}
+.fin input,.fin select,.fin textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:12px;outline:none;background:#fbfcfd}
+.fin input:focus,.fin textarea:focus,.fin select:focus{border-color:var(--green)}
+.abtn{background:var(--green);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:800}
+.abtn.blue{background:var(--blue)}
+.abtn.ghost{background:#fff;color:var(--red);border:1px solid var(--pink)}
+.ptable{width:100%;border-collapse:collapse;font-size:11px}
+.ptable td,.ptable th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}
+.ptable img{width:34px;height:34px;border-radius:8px;object-fit:cover}
+.pill{background:#e8f7ee;color:var(--green-d);border-radius:20px;padding:2px 10px;font-size:10px;font-weight:800}
+.dstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dstats div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.dstats b{font-size:22px;font-weight:900;color:var(--green-d);display:block}
+.dstats span{font-size:11px;color:var(--mut)}
+#dashAi{font-size:12px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px;margin-top:10px;min-height:30px;white-space:pre-wrap}
+#adlogin{position:absolute;inset:0;background:#f4f6f8;display:flex;align-items:center;justify-content:center;z-index:5}
+#adlogin .box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;width:min(340px,90%);text-align:center}
+#adlogin input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font-size:13px;outline:none;text-align:center}
+/* ══ تم قهوه‌ای ══ */
+body.coffee{--green:#6f4e37;--green-d:#543a29;--ink:#2b1d16;--mut:#8a7466;--bg:#f6f1ea;--line:#e7dccf;--gray:#efe6da;--blue:#8a5a3b;--blue-l:#d9c1ab;--pink:#f6e7d4;--red:#a05c2c;--gold:#c08a3e;--sh:0 10px 26px rgba(75,50,35,.12);background:var(--bg)}
+body.coffee ::selection{background:#d9a05b44}
+body.coffee h1,body.coffee h2,body.coffee .bn .t b,body.coffee .cta h2,body.coffee .logo b{font-family:'Markazi Text','IRANYekan',serif;font-weight:600}
+body.coffee .logo .en{font-family:'Fraunces',serif;font-style:italic;letter-spacing:3px}
+body.coffee .hbanner h1{font-size:clamp(46px,7vw,78px)}
+body.coffee .hbanner p,body.coffee .bn .t span,body.coffee .cta p{color:#6b5647}
+body.coffee .mini svg{stroke:var(--gold)}
+body.coffee .shead{border-top:1px solid var(--line);padding-top:16px}
+body.coffee .shead h2{font-size:clamp(26px,4vw,42px)}
+body.coffee .ovl{display:block}
+body.coffee header,body.coffee .pcard,body.coffee .qa,body.coffee .tst div,body.coffee .post,body.coffee .flip .f,body.coffee .trust,body.coffee .marq,body.coffee .chip,body.coffee .btnline,body.coffee .cartbox,body.coffee .step,body.coffee .sarr,body.coffee #spop,body.coffee #chat,body.coffee #chat .ft,body.coffee .qrow,body.coffee .qchip,body.coffee .adcard,body.coffee #ad-side,body.coffee #adlogin .box,body.coffee .dstats div,body.coffee .bnav,body.coffee .trust .ic,body.coffee .add,body.coffee .socials button,body.coffee .iconbtn{background:#fffaf4}
+body.coffee .hsearch input{background:#f1e8dc}
+body.coffee .hsearch input:focus{background:#efe3d2;box-shadow:0 0 0 2px var(--gold)}
+body.coffee nav.main a,body.coffee .login{color:#6b5647}
+body.coffee nav.main a:hover,body.coffee .login:hover{background:#f1e8dc;color:var(--green-d)}
+body.coffee .callbox .nums{background:#33231a}
+body.coffee .pimg{background:#efe6da}
+body.coffee .step i{color:#e5d3bd}
+body.coffee .srv .ic{background:#f1e3d0;color:#6f4e37}
+body.coffee .flip .b a{background:#f3e5d3;color:#543a29}
+body.coffee #mascot,body.coffee #chat .hd,body.coffee .flip .b{background:linear-gradient(135deg,#7a5a3f,#4a3325)}
+body.coffee .btn-g{box-shadow:0 6px 0 #33231a}
+body.coffee .stats,body.coffee .greenbar{background:linear-gradient(135deg,#543a29,#6f4e37)}
+body.coffee .greenbar a{background:#f3e5d3;color:#33231a}
+body.coffee .divider,body.coffee #prog{background:linear-gradient(90deg,transparent,var(--gold),#8a5a3b,transparent);background-size:200% 100%}
+body.coffee #prog{background:linear-gradient(90deg,var(--gold),#8a5a3b)}
+body.coffee .story .ring{background:linear-gradient(45deg,#c08a3e,#8a5a3b,#543a29)}
+body.coffee .story .lb{color:#4a3325}
+body.coffee .ring3d{border-color:#c08a3e6e}
+body.coffee .pt{background:#d9a05bb0}
+body.coffee .marq .trk{color:#d8c7b4}
+body.coffee #glow{background:radial-gradient(circle,#c08a3e14,transparent 60%)}
+body.coffee #toast,body.coffee #ad-hd{background:#33231a}
+body.coffee #loader{background:#f6f1ea}
+body.coffee #loader svg rect{fill:#5a4130}
+body.coffee footer{background:#2b1d16;border-top-color:#4a3325}
+body.coffee footer h5{color:#f3e5d3}
+body.coffee footer .fl a,body.coffee .crow{color:#c9b6a4}
+body.coffee .crow .ic{background:#33231a;border-color:#4a3325}
+body.coffee .crow svg{stroke:#d8c7b4}
+body.coffee .fbot{border-top-color:#4a3325}
+body.coffee .fbot small{color:#a08b7a}
+body.coffee .socials button{border-color:#4a3325;color:#d8c7b4}
+body.coffee .badges div{background:#33231a;border-color:#4a3325;color:#c9b6a4}
+body.coffee #admin{background:#f6f1ea}
+body.coffee .pill{background:#f6e7d4;color:#a05c2c}
+body.coffee .fin input,body.coffee .fin select,body.coffee .fin textarea,body.coffee #chat input,body.coffee .abox textarea{background:#fbf7f0}
+body.coffee #adlogin{background:#f6f1ea}
+body.coffee .dot{background:var(--gold)}
+@media(max-width:1020px){.pgrid{grid-template-columns:repeat(3,1fr)}.banners .row2{grid-template-columns:1fr 1fr}.trust{grid-template-columns:1fr 1fr}.trust div{border:0}.hsearch{display:none}.burger{display:block}.bnav{display:flex}.hbanner{grid-template-columns:1fr}.hbanner img{height:200px}.cdpill{margin-inline-start:0}.srv{grid-template-columns:1fr 1fr}#ad-side{width:64px}#ad-side button{font-size:10px;padding:10px 6px;text-align:center}}
+@media(max-width:640px){.pgrid,.steps,.srv,.tst,.blog,.banners,.banners .row2,footer .cols,.trust{grid-template-columns:1fr}.htel{display:none}#spop{display:none}.frow{grid-template-columns:1fr}.dstats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body id="home">
+<script>if((localStorage.getItem('BR_THEME')||'coffee')==='coffee')document.body.classList.add('coffee')</script>
 
+<div id="loader">
+<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#1e6b47"/><path d="M32 5l2.8 7.2 7.2 2.8-7.2 2.8L32 25l-2.8-7.2-7.2-2.8 7.2-2.8z" fill="#f4c542"/><circle cx="32" cy="42" r="14" fill="#fff"/><path d="M26 41.5q2.5-4 5 0M33 41.5q2.5-4 5 0M27.5 46.5q4.5 4.5 9 0" fill="none" stroke="#175c3c" stroke-width="2.6" stroke-linecap="round"/></svg>
+<b>باشگاه ربات های هوشمند</b><small>در حال آماده‌سازی تجربه هوشمند…</small>
+</div>
+<div id="prog"></div>
+<div id="glow"></div>
+
+<header><div class="wrap">
+<div class="hbar">
+<a class="logo" href="#home">
+<svg viewBox="0 0 64 64"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a8a5c"/><stop offset="1" stop-color="#175c3c"/></linearGradient><radialGradient id="gl1" cx=".5" cy=".3" r=".55"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".85"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient></defs><rect width="64" height="64" rx="16" fill="url(#bg1)"/><circle cx="32" cy="15" r="13" fill="url(#gl1)"/><path d="M32 5l2.8 7.2 7.2 2.8-7.2 2.8L32 25l-2.8-7.2-7.2-2.8 7.2-2.8z" fill="#f4c542"/><circle cx="32" cy="42" r="14" fill="#fff"/><rect x="12.5" y="38" width="4.5" height="9" rx="2.2" fill="#fff"/><rect x="47" y="38" width="4.5" height="9" rx="2.2" fill="#fff"/><path d="M26 41.5q2.5-4 5 0M33 41.5q2.5-4 5 0M27.5 46.5q4.5 4.5 9 0" fill="none" stroke="#175c3c" stroke-width="2.6" stroke-linecap="round"/><path d="M21 32a13 13 0 0 1 6-5" stroke="#fff" stroke-opacity=".55" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+<span><b>باشگاه ربات های هوشمند</b><span class="en">SMART ROBOT CLUB</span><small>با هم هوشمند شویم <em>⚡</em></small></span>
+</a>
+<div class="hsearch"><input id="sin" type="text" placeholder="جستجو" oninput="doSearch(this.value)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+<div class="hact">
+<button class="iconbtn" id="advBtn" title="مشاور خرید هوشمند">🤖 مشاور</button>
+<button class="iconbtn" id="themeBtn" title="تغییر تم">🎨</button>
+<a class="htel" href="tel:+982136917586"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="teln">۰۲۱-۳۶۹۱۷۵۸۶</span></a>
+<span class="sep"></span>
+<button class="cartbox" onclick="goBale('order-general')" title="سبد خرید"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span><b>سبد خرید</b><small id="cartTxt">خالی</small></span></button>
+<button class="burger" onclick="toast('منوی کامل در ناوبری پایین فعال است 🙂')">☰</button>
+</div>
+</div>
+<nav class="main">
+<a href="#home">خانه</a><a href="#products">محصولات</a><a href="#products" onclick="setCat('ربات')">ربات‌های هوشمند</a><a href="#products" onclick="setCat('AI')">ابزارهای AI</a><a href="#products" onclick="setCat('اتوماسیون')">اتوماسیون</a><a href="#blog">راهنما</a><a href="#about">درباره ما</a><a href="#support">تماس با ما</a>
+<button class="login" onclick="toast('ورود | ثبت‌نام به‌زودی فعال می‌شود 🙂')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>ورود | ثبت‌نام</button>
+</nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+<div class="hbanner rv in">
+<div class="shapes"><span class="ring3d"></span></div>
+<i class="pt" style="right:8%"></i><i class="pt" style="right:22%;animation-delay:1.4s"></i><i class="pt" style="right:46%;animation-delay:2.6s"></i><i class="pt" style="right:64%;animation-delay:.8s"></i><i class="pt" style="right:82%;animation-delay:3.4s"></i>
+<div>
+<h1 id="heroH1">خرید اعتباری</h1>
+<p id="heroP">همین حالا بخرید، بعداً پرداخت کنید!</p>
+<p class="typeline">✦ دنبال <span id="type"></span><span class="caret">|</span> هستی؟</p>
+<div class="mini">
+<div><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>پرداخت در آینده</div>
+<div><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>امن و مطمئن</div>
+<div><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>فرآیند سریع و آسان</div>
+</div>
+</div>
+<img src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt="ربات هوشمند">
+<div class="callbox"><span class="nums teln">۰۲۱ ۳۶۹۱۷۵۸۶</span><b>تماس بگیرید</b></div>
+</div>
+
+<div class="greenbar"><span class="fl" id="flames">☕☕☕☕☕☕</span><a id="noticeA" href="tel:+982136917586">خرید اعتباری !!! تماس بگیرید</a></div>
+
+<div class="ticker rv">
+<span class="dot"></span><span id="tickTxt">سفارش جدید: ربات فروش — تهران · ۲ دقیقه پیش</span>
+<span id="liveDate"></span>
+<span id="online">● ۱۲۴ آنلاین</span>
+<span class="cdpill">⏳ پایان تخفیف‌ها: <b id="cd">۰۰:۰۰:۰۰</b></span>
+</div>
+
+<div class="banners rv">
+<div class="bn big" onclick="setCat('ربات',true)"><img src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt=""><div class="t"><b>ربات‌های فروش</b><span>پاسخ‌گویی و ثبت سفارش</span></div></div>
+<div class="bn big" onclick="setCat('تخصصی',true)"><img src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt=""><div class="t"><b>دستیارهای هوشمند</b><span>پشتیبانی و آموزش</span></div></div>
+<div class="row2">
+<div class="bn" onclick="setCat('اتوماسیون',true)"><img src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt=""><div class="t"><b>اتوماسیون</b><span>جریان کاری خودکار</span></div></div>
+<div class="bn" onclick="setCat('AI',true)"><img src="https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open" alt=""><div class="t"><b>ابزارهای AI</b><span>محتوا و تصویر</span></div></div>
+<div class="bn" onclick="setCat('سایت',true)"><img src="https://u234128125.p.clickup-attachments.com/u234128125/46136ea0-9630-4f2d-9913-97ad8a0bc33a/generated-image-06224b19-be20-4327-ac80-c5064516cfdf.png?view=open" alt=""><div class="t"><b>طراحی سایت</b><span>فروشگاه و لندینگ</span></div></div>
+<div class="bn" onclick="goBale('custom-solution')"><img src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt=""><div class="t"><b>راهکار اختصاصی</b><span>سفارشی‌سازی کامل</span></div></div>
+</div>
+</div>
+
+<div class="stories rv">
+<button class="sarr l" onclick="document.getElementById('strack').scrollBy({left:260,behavior:'smooth'})">‹</button>
+<div class="strack" id="strack">
+<a class="story" href="#how"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt=""></span><span class="lb">مشاوره</span></a>
+<a class="story" href="#how"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt=""></span><span class="lb">طراحی سناریو</span></a>
+<a class="story" href="#how"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt=""></span><span class="lb">آموزش مدل</span></a>
+<a class="story" href="#how"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open" alt=""></span><span class="lb">تست کیفیت</span></a>
+<a class="story" href="#how"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/46136ea0-9630-4f2d-9913-97ad8a0bc33a/generated-image-06224b19-be20-4327-ac80-c5064516cfdf.png?view=open" alt=""></span><span class="lb">تحویل</span></a>
+<a class="story" href="#support"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt=""></span><span class="lb">پشتیبانی</span></a>
+<a class="story" href="#products"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt=""></span><span class="lb">بروزرسانی</span></a>
+<a class="story" href="#products"><span class="ring"><img src="https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open" alt=""></span><span class="lb">محتوا و آنالیز</span></a>
+</div>
+<button class="sarr r" onclick="document.getElementById('strack').scrollBy({left:-260,behavior:'smooth'})">›</button>
+</div>
+<div class="divider"></div>
+</div></div>
+
+<section id="products"><div class="wrap">
+<div class="shead rv"><div><h2>محصولات پرفروش</h2><p>محبوب‌ترین انتخاب‌ها از نگاه خریداران</p></div><button class="btnline" id="moreBtn" onclick="toggleMore()">مشاهده همه</button></div>
+<div class="chips rv" id="catchips">
+<button class="chip on" data-cat="همه" onclick="setCat('همه')">همه</button>
+<button class="chip" data-cat="ربات" onclick="setCat('ربات')">ربات هوشمند</button>
+<button class="chip" data-cat="تخصصی" onclick="setCat('تخصصی')">هوش مصنوعی تخصصی</button>
+<button class="chip" data-cat="AI" onclick="setCat('AI')">ابزار AI</button>
+<button class="chip" data-cat="اتوماسیون" onclick="setCat('اتوماسیون')">اتوماسیون</button>
+<button class="chip" data-cat="سایت" onclick="setCat('سایت')">طراحی سایت</button>
+<button class="chip" data-sort="new" onclick="setSort('new',this)">جدیدترین</button>
+<button class="chip" data-sort="pop" onclick="setSort('pop',this)">محبوب‌ترین</button>
+<button class="chip" data-sort="cheap" onclick="setSort('cheap',this)">ارزان‌ترین</button>
+<button class="chip" data-sort="exp" onclick="setSort('exp',this)">گران‌ترین</button>
+</div>
+<div class="pgrid rv" id="pgrid">
+<article class="pcard" data-cat="ربات" data-price="14800000" data-pop="98" data-new="3" data-key="ربات فروش پاسخگویی هوشمند سناریو اختصاصی بله"><div class="pimg"><span class="pbadge">پرفروش</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt="ربات فروش"></div><span class="pbrand">باشگاه ربات‌های هوشمند • ربات‌های فروش</span><h3>ربات فروش و پاسخ‌گویی هوشمند با سناریوی اختصاصی</h3><div class="pprice"><s>۱۷,۴۰۰,۰۰۰</s><span class="now">۱۴,۸۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۵٪</span></div><button class="add" onclick="addCart('ربات فروش',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-sales-bot">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="AI" data-price="9900000" data-pop="80" data-new="9" data-key="تولید محتوا AI حرفه‌ای برند متن تصویر"><div class="pimg"><span class="pbadge">جدید</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open" alt="تولید محتوا"></div><span class="pbrand">باشگاه ربات‌های هوشمند • ابزارهای AI</span><h3>سیستم تولید محتوای AI نسخه حرفه‌ای برای برندها</h3><div class="pprice"><s>۱۱,۲۰۰,۰۰۰</s><span class="now">۹,۹۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۰٪</span></div><button class="add" onclick="addCart('تولید محتوای AI',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-content-ai">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="اتوماسیون" data-price="23500000" data-pop="88" data-new="5" data-key="اتوماسیون سازمانی داده گزارش فرآیند"><div class="pimg"><span class="pbadge">پیشنهاد ویژه</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt="اتوماسیون"></div><span class="pbrand">باشگاه ربات‌های هوشمند • اتوماسیون</span><h3>اتوماسیون فرآیندهای سازمانی با اتصال داده و گزارش</h3><div class="pprice"><s>۲۹,۴۰,۰۰۰</s><span class="now">۲۳,۵۰۰,۰۰۰ <i>تومان</i></span><span class="off">۲۰٪</span></div><button class="add" onclick="addCart('اتوماسیون سازمانی',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-automation">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="تخصصی" data-price="12400000" data-pop="75" data-new="8" data-key="دستیار هوشمند سازمانی پشتیبانی آموزش تیم"><div class="pimg"><span class="pbadge">جدید</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt="دستیار سازمانی"></div><span class="pbrand">باشگاه ربات‌های هوشمند • AI تخصصی</span><h3>دستیار هوشمند سازمانی برای پشتیبانی و آموزش تیم</h3><div class="pprice"><s>۱۴,۱۰۰,۰۰</s><span class="now">۱۲,۴۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۲٪</span></div><button class="add" onclick="addCart('دستیار سازمانی',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-assistant">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="ربات" data-price="9000000" data-pop="92" data-new="4" data-key="ربات پشتیبانی ۲۴ ساعته صف درخواست"><div class="pimg"><span class="pbadge">محبوب</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/46136ea0-9630-4f2d-9913-97ad8a0bc33a/generated-image-06224b19-be20-4327-ac80-c5064516cfdf.png?view=open" alt="ربات پشتیبانی"></div><span class="pbrand">باشگاه ربات‌های هوشمند • ربات‌های فروش</span><h3>ربات پشتیبانی ۲۴ ساعته با مدیریت صف درخواست</h3><div class="pprice"><s>۹,۸۰۰,۰۰۰</s><span class="now">۹,۰۰۰,۰۰۰ <i>تومان</i></span><span class="off">۸٪</span></div><button class="add" onclick="addCart('ربات پشتیبانی',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-support-bot">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="AI" data-price="11600000" data-pop="70" data-new="6" data-key="تحلیل گزارش هوشمند فروش رفتار مشتری"><div class="pimg"><span class="pbadge">ویژه</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt="تحلیل فروش"></div><span class="pbrand">باشگاه ربات‌های هوشمند • ابزارهای AI</span><h3>ابزار تحلیل و گزارش هوشمند فروش و رفتار مشتری</h3><div class="pprice"><s>۱۳,۵۰۰,۰۰۰</s><span class="now">۱۱,۶۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۴٪</span></div><button class="add" onclick="addCart('تحلیل و گزارش',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-analytics">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="اتوماسیون" data-price="16100000" data-pop="95" data-new="2" data-key="پکیج اتوماسیون فروشگاهی مدیریت سفارش پیگیری"><div class="pimg"><span class="pbadge">پرفروش</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt="اتوماسیون فروشگاهی"></div><span class="pbrand">باشگاه ربات‌های هوشمند • اتوماسیون</span><h3>پکیج اتوماسیون فروشگاهی برای مدیریت سفارش و پیگیری</h3><div class="pprice"><s>۱۹,۶۰۰,۰۰۰</s><span class="now">۱۶,۱۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۸٪</span></div><button class="add" onclick="addCart('پکیج اتوماسیون',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-shop-automation">◉ سفارش از بله</a></article>
+<article class="pcard" data-cat="سایت" data-price="30600000" data-pop="60" data-new="1" data-key="طراحی سایت اختصاصی فروش محور RTL فروشگاه لندینگ"><div class="pimg"><span class="pbadge">خدمات</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/46136ea0-9630-4f2d-9913-97ad8a0bc33a/generated-image-06224b19-be20-4327-ac80-c5064516cfdf.png?view=open" alt="طراحی سایت"></div><span class="pbrand">باشگاه ربات‌های هوشمند • خدمات</span><h3>طراحی سایت اختصاصی با ساختار فروش‌محور و RTL</h3><div class="pprice"><s>۳۴,۰۰۰,۰۰۰</s><span class="now">۳۰,۶۰۰,۰۰۰ <i>تومان</i></span><span class="off">۱۰٪</span></div><button class="add" onclick="addCart('طراحی سایت',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=service-website">◉ سفارش از بله</a></article>
+<article class="pcard" data-extra="1" data-cat="ربات" data-price="10800000" data-pop="65" data-new="10" data-key="ربات جذب پیگیری مشتری پیام هوشمند لید"><div class="pimg"><span class="pbadge">جدید</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt="ربات جذب مشتری"></div><span class="pbrand">باشگاه ربات‌های هوشمند • ربات‌های فروش</span><h3>ربات جذب و پیگیری مشتری با پیام‌های هوشمند</h3><div class="pprice"><s>۱۱,۹۰۰,۰۰۰</s><span class="now">۱۰,۸۰۰,۰۰۰ <i>تومان</i></span><span class="off">۹٪</span></div><button class="add" onclick="addCart('ربات جذب مشتری',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-lead-bot">◉ سفارش از بله</a></article>
+<article class="pcard" data-extra="1" data-cat="تخصصی" data-price="0" data-pop="50" data-new="7" data-key="راهکار اختصاصی سیستم هوش مصنوعی سفارشی مشاوره"><div class="pimg"><span class="pbadge">اختصاصی</span><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt="راهکار اختصاصی"></div><span class="pbrand">باشگاه ربات‌های هوشمند • مشاوره</span><h3>طراحی سیستم اختصاصی هوش مصنوعی بر اساس نیاز شما</h3><div class="pprice"><span class="now">قیمت بر اساس پروژه</span></div><button class="add" onclick="goBale('custom-solution')">＋ درخواست مشاوره</button><a class="ble" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=custom-solution">◉ درخواست در بله</a></article>
+</div>
+</div></section>
+
+<div class="trust rv"><div class="wrap" style="display:contents">
+<div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span><b>تحویل سریع</b><small>راه‌اندازی فوری سراسر کشور</small></span></div>
+<div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><span><b>پرداخت امن</b><small>درگاه مطمئن بانکی</small></span></div>
+<div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>تضمین کیفیت</b><small>بازگشت در صورت عدم رضایت</small></span></div>
+<div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><span><b>پشتیبانی ۲۴ ساعته</b><small>همیشه پاسخگوی شما هستیم</small></span></div>
+</div></div>
+
+<div class="marq"><div class="trk">
+<span>ربات فروش ✦</span><span>اتوماسیون هوشمند ✦</span><span>تولید محتوای AI ✦</span><span>طراحی سایت ✦</span><span>دستیار سازمانی ✦</span><span>تحلیل داده ✦</span><span>پشتیبانی ۲۴ ساعته ✦</span><span>خرید اعتباری ✦</span>
+<span>ربات فروش ✦</span><span>اتوماسیون هوشمند ✦</span><span>تولید محتوای AI ✦</span><span>طراحی سایت ✦</span><span>دستیار سازمانی ✦</span><span>تحلیل داده ✦</span><span>پشتیبانی ۲۴ ساعته ✦</span><span>خرید اعتباری ✦</span>
+</div></div>
+
+<section id="how"><div class="wrap">
+<div class="shead rv" style="justify-content:center;text-align:center"><div><h2>شروع کار فقط چند قدم فاصله دارد</h2><p>بدون پیچیدگی، بدون رفت‌وبرگشت اضافه</p></div></div>
+<div class="steps rv">
+<div class="step"><i>۰۱</i><h4>انتخاب محصول</h4><p>محصول یا خدمت مناسب نیازت را از دسته‌ها پیدا کن.</p></div>
+<div class="step"><i>۰۲</i><h4>بررسی جزئیات</h4><p>ویژگی‌ها، کاربردها و شرایط را شفاف ببین.</p></div>
+<div class="step"><i>۰۳</i><h4>ثبت سفارش در بله</h4><p>سفارش با شماره مرجع محصول ثبت می‌شود.</p></div>
+<div class="step"><i>۰۴</i><h4>اجرا و تحویل</h4><p>راه‌اندازی، تست و تحویل نهایی با پشتیبانی.</p></div>
+</div>
+<div class="stats rv">
+<div><b class="cnt" data-n="120">۰</b><span>مشتری فعال</span></div>
+<div><b class="cnt" data-n="38">۰</b><span>محصول هوشمند</span></div>
+<div><b class="cnt" data-n="95">۰</b><span>پروژه اجراشده</span></div>
+<div><b class="cnt" data-n="24">۰</b><span>ساعت پشتیبانی</span></div>
+</div>
+</div></section>
+
+<section id="services" style="padding-top:0"><div class="wrap">
+<div class="shead rv" style="justify-content:center;text-align:center"><div><h2>فقط محصول نمی‌فروشیم؛ راهکار می‌سازیم</h2><p>ماوس را روی کارت‌ها ببر تا ورق بخورند 🔄</p></div></div>
+<div class="srv rv">
+<div class="flip"><div class="in"><div class="f"><span class="ic">WS</span><h4>طراحی سایت</h4><p>سریع، RTL، فروش‌محور با پنل قابل فهم.</p></div><div class="b"><h4>طراحی سایت</h4><p>فروشگاه، لندینگ و پنل اختصاصی</p><a target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=service-website">سفارش ◉</a></div></div></div>
+<div class="flip"><div class="in"><div class="f"><span class="ic">AI</span><h4>توسعه AI و ساخت ربات</h4><p>سناریوی اختصاصی و امن روی داده خودت.</p></div><div class="b"><h4>توسعه AI</h4><p>مدل اختصاصی روی داده کسب‌وکار تو</p><a target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=service-request">سفارش ◉</a></div></div></div>
+<div class="flip"><div class="in"><div class="f"><span class="ic">AU</span><h4>اتوماسیون فرآیند</h4><p>پایدار و مقیاس‌پذیر بدون کار دستی.</p></div><div class="b"><h4>اتوماسیون</h4><p>حذف کار تکراری، عملیات سریع‌تر</p><a target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=product-automation">سفارش ◉</a></div></div></div>
+<div class="flip"><div class="in"><div class="f"><span class="ic">CS</span><h4>مشاوره فناوری</h4><p>انتخاب درست، هزینه کمتر.</p></div><div class="b"><h4>مشاوره رایگان</h4><p>قبل از خرج کردن، درست انتخاب کن</p><a target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=support">شروع ◉</a></div></div></div>
+</div>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+<div class="shead rv" style="justify-content:center;text-align:center"><div><h2>مشتری‌ها چه می‌گویند؟</h2><p>نظرات ثبت‌شده روی محصولات و خدمات</p></div></div>
+<div class="tst rv">
+<div><span class="stars">★★★★★</span><p>ربات فروش را روی بله راه انداختیم و حجم پیام‌های تکراری تقریباً نصف شد. راه‌اندازی سریع بود.</p><b>مریم رستمی · ربات فروش · مرداد</b></div>
+<div><span class="stars">★★★★★</span><p>دستیار سازمانی دقیقاً روی داده خودمان آموزش داده شد. پاسخ‌ها خیلی نزدیک به لحن برندمان است.</p><b>سعید کاظمی · دستیار سازمانی · تیر</b></div>
+<div><span class="stars">★★★★☆</span><p>پکیج اتوماسیون خوب کار می‌کند؛ فقط برای گزارش‌گیری پیشرفته یک جلسه اضافه لازم شد.</p><b>نگار عبدی · اتوماسیون · خرداد</b></div>
+<div><span class="stars">★★★★★</span><p>سایت فروشگاهی‌مان را از صفر ساختند؛ سرعت لود واقعاً خوب است و ادمین‌پنلش قابل فهم.</p><b>امیر توکلی · طراحی سایت · اردیبهشت</b></div>
+</div>
+</div></section>
+
+<section id="blog" style="padding-top:0"><div class="wrap">
+<div class="shead rv" style="justify-content:center;text-align:center"><div><h2>با دنیای هوش مصنوعی همراه بمانید</h2><p>راهنما، آموزش و ایده‌های قابل اجرا</p></div></div>
+<div class="blog rv">
+<a class="post" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=support"><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt=""><div class="bd"><h4>چطور یک چت‌بات فروش بسازیم که واقعاً بفروشد؟</h4><span>راهنما · ۷ دقیقه مطالعه</span></div></a>
+<a class="post" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=support"><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open" alt=""><div class="bd"><h4>پنج فرآیند تکراری که همین امروز باید خودکار شوند</h4><span>اتوماسیون · ۵ دقیقه مطالعه</span></div></a>
+<a class="post" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=support"><img loading="lazy" src="https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open" alt=""><div class="bd"><h4>انتخاب بین ربات آماده و راهکار اختصاصی</h4><span>آموزش · ۶ دقیقه مطالعه</span></div></a>
+</div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+<div class="shead rv" style="justify-content:center;text-align:center"><div><h2>سوالات متداول</h2><p>بیشترین سوالاتی که شما مطرح کرده‌اید</p></div></div>
+<div class="faq rv">
+<div class="qa"><button onclick="this.parentNode.classList.toggle('open')">مدت زمان تحویل سفارش چقدر است؟<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><p>محصولات دیجیتال و ربات‌های آماده بلافاصله پس از تأیید سفارش تحویل می‌شوند. راهکارهای اختصاصی بین ۳ تا ۱۴ روز کاری بسته به دامنه پروژه زمان می‌برند.</p></div>
+<div class="qa"><button onclick="this.parentNode.classList.toggle('open')">هزینه راه‌اندازی چگونه محاسبه می‌شود؟<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><p>قیمت محصولات آماده روی همین صفحه مشخص است. برای پروژه اختصاصی، قیمت بر اساس دامنه کار، حجم داده و مدت پشتیبانی محاسبه و قبل از شروع اعلام می‌شود.</p></div>
+<div class="qa"><button onclick="this.parentNode.classList.toggle('open')">روش‌های پرداخت سفارش به چه صورت است؟<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><p>پرداخت مستقیم از درگاه امن بانکی، پرداخت مرحله‌ای برای پروژه‌ها و ثبت سفارش از طریق ربات بله. همه گزینه‌ها قبل از نهایی شدن سفارش نمایش داده می‌شوند.</p></div>
+<div class="qa"><button onclick="this.parentNode.classList.toggle('open')">سفارش از طریق بله چگونه انجام می‌شود؟<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><p>روی دکمه سفارش هر محصول بزنید تا مستقیم به ربات @admin_seller_bot هدایت شوید و شماره مرجع همان محصول برایتان ارسال شود تا سفارش دقیق ثبت شود.</p></div>
+<div class="qa"><button onclick="this.parentNode.classList.toggle('open')">آیا امکان سفارش اختصاصی وجود دارد؟<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><p>بله. اگر هیچ‌کدام از محصولات آماده مناسب نبود، نیازتان را بگویید تا راهکار اختصاصی طراحی شود.</p></div>
+</div>
+</div></section>
+
+<section id="support" style="padding-top:0"><div class="wrap">
+<div class="cta rv">
+<h2>هنوز مطمئن نیستید چه چیزی مناسب شماست؟</h2>
+<p>نیازت را بگو تا مناسب‌ترین راهکار را پیشنهاد کنیم؛ حتی اگر جواب درست «فعلاً نخر» باشد.</p>
+<a class="btn-g" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=support">ارتباط با پشتیبانی در بله</a>
+<a class="btn-w" href="tel:+982136917586">تماس تلفنی</a>
+</div>
+</div></section>
+
+<footer id="about"><div class="wrap">
+<div class="cols">
+<div>
+<a class="logo" href="#home"><svg viewBox="0 0 64 64" width="42" height="42"><rect width="64" height="64" rx="16" fill="#1e6b47"/><path d="M32 5l2.8 7.2 7.2 2.8-7.2 2.8L32 25l-2.8-7.2-7.2-2.8 7.2-2.8z" fill="#f4c542"/><circle cx="32" cy="42" r="14" fill="#fff"/><path d="M26 41.5q2.5-4 5 0M33 41.5q2.5-4 5 0M27.5 46.5q4.5 4.5 9 0" fill="none" stroke="#175c3c" stroke-width="2.6" stroke-linecap="round"/></svg><span><b>باشگاه ربات های هوشمند</b><small>با هم هوشمند شویم <em>⚡</em></small></span></a>
+<p style="font-size:12px;color:#8a7466;margin-top:12px">فروشگاه و مرکز راهکارهای هوش مصنوعی: ربات‌های هوشمند، ابزارهای AI، اتوماسیون و طراحی سیستم‌های اختصاصی با کیفیت ثابت و پشتیبانی مستمر.</p>
+</div>
+<div class="fl"><h5>دسترسی سریع</h5><a href="#home">حساب کاربری</a><a href="#faq">قوانین و مقررات</a><a href="#faq">حریم خصوصی</a><a href="#how">راهنما</a><a href="#about">درباره ما</a><a href="#support">تماس با ما</a><a href="#" onclick="event.preventDefault();openAdmin()" style="color:var(--gold);font-weight:800">⚙ پنل مدیریت</a></div>
+<div><h5>تماس با ما</h5>
+<div class="crow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span class="teln">۰۲۱-۳۶۹۱۷۵۸۶</span></div>
+<div class="crow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.2-.6L3 21l1.7-4.8A8.4 8.4 0 1 1 21 11.5z"/></svg></span>سفارش و پشتیبانی: @admin_seller_bot</div>
+<div class="crow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>تهران</div>
+</div>
+<div><h5>گواهی‌نامه‌ها</h5><div class="badges"><div>نماد اعتماد<br>در حال دریافت</div><div>ساماندهی<br>در حال دریافت</div><div>ضمانت بازگشت وجه</div></div></div>
+</div>
+<div class="fbot">
+<div class="socials">
+<button onclick="goBale('support')" title="تلگرام">✈️</button>
+<button onclick="toast('صفحه رسمی اینستاگرام به‌زودی فعال می‌شود')" title="اینستاگرام">📷</button>
+<button onclick="goBale('support')" title="واتساپ">💬</button>
+<button onclick="toast('کانال ویدیویی به‌زودی فعال می‌شود')" title="یوتیوب">▶️</button>
+</div>
+<small>تمامی حقوق این وب‌سایت محفوظ است · ساخته‌شده برای برند باشگاه ربات های هوشمند ♥</small>
+</div>
+</div></footer>
+
+<div id="spop"><img id="spImg" src="https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open" alt=""><span id="spTxt"></span></div>
+
+<button id="mascot" title="چت با دستیار هوشمند">
+<span class="ringp"></span>
+<svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="20" fill="#fff"/><rect x="5" y="30" width="6" height="12" rx="3" fill="#fff"/><rect x="53" y="30" width="6" height="12" rx="3" fill="#fff"/><g class="eye"><circle cx="26" cy="32" r="4.5" fill="#e8f7ee"/><circle class="pupil" cx="26" cy="32" r="2.4" fill="#175c3c"/><circle cx="38" cy="32" r="4.5" fill="#e8f7ee"/><circle class="pupil" cx="38" cy="32" r="2.4" fill="#175c3c"/></g><path d="M26 41q6 5 12 0" fill="none" stroke="#175c3c" stroke-width="3" stroke-linecap="round"/></svg>
+</button>
+<div id="chat">
+<div class="hd"><span class="dot"></span>دستیار هوشمند · <span id="aiBadge">آنلاین</span></div>
+<div class="bd" id="cbd"></div>
+<div class="qrow">
+<button class="qchip" onclick="askChip('قیمت‌ها؟')">قیمت‌ها؟</button>
+<button class="qchip" onclick="askChip('زمان تحویل؟')">زمان تحویل؟</button>
+<button class="qchip" onclick="askChip('کدوم محصول به دردم می‌خوره؟')">کدوم محصول به دردم می‌خوره؟</button>
+</div>
+<div class="ft">
+<input id="cin" placeholder="سوال‌ات را بنویس…" onkeydown="if(event.key==='Enter')sendChat()">
+<button class="send" id="micBtn" style="background:var(--blue)" title="ورودی صوتی">🎤</button>
+<button class="send" id="spkBtn" style="background:#565b63" title="خواندن صوتی">🔊</button>
+<button class="send" onclick="sendChat()">➤</button>
+</div>
+</div>
+
+<div id="adv"><div class="abox">
+<b style="font-size:15px;font-weight:900">🤖 مشاور خرید هوشمند</b>
+<p style="font-size:11px;color:var(--mut);margin-top:4px">نیازت را یک جمله بنویس تا از بین محصولات، بهترین را پیشنهاد دهم:</p>
+<textarea id="advQ" rows="2" placeholder="مثلاً: برای اینستاگرامم می‌خوام سفارش‌ها رو خودکار جواب بدم…"></textarea>
+<button class="abtn" onclick="advRun()">✨ پیشنهاد بده</button>
+<button class="abtn ghost" id="abtnClose" onclick="document.getElementById('adv').classList.remove('open')">بستن ✕</button>
+<div id="advOut"></div>
+</div></div>
+
+<div id="admin">
+<div id="adlogin"><div class="box">
+<b style="font-size:16px;font-weight:900">🔐 پنل مدیریت</b>
+<p style="font-size:11px;color:var(--mut);margin:6px 0 14px">برای ورود رمز عبور را وارد کنید (پیش‌فرض: 1234)</p>
+<input id="adpass" type="password" placeholder="رمز عبور" onkeydown="if(event.key==='Enter')adLogin()">
+<button class="abtn" style="width:100%;margin-top:10px" onclick="adLogin()">ورود به پنل</button>
+<button class="abtn ghost" style="width:100%;margin-top:8px" onclick="adClose()">بستن ✕</button>
+</div></div>
+<div id="ad-hd"><b>⚙️ پنل مدیریت باشگاه ربات‌ها</b><span class="pill" id="adAiState">AI خاموش</span>
+<button class="x" onclick="cloudPush()">☁️ ذخیره ابری</button>
+<button class="x" onclick="cloudPull()">📥 دریافت ابری</button>
+<button class="x" onclick="adClose()">بستن ✕</button>
+</div>
+<div id="ad-bd">
+<div id="ad-side">
+<button class="on" onclick="adTab('dash',this)">📊 داشبورد</button>
+<button onclick="adTab('prod',this)">📦 محصولات</button>
+<button onclick="adTab('ai',this)">🤖 هوش مصنوعی / API</button>
+<button onclick="adTab('site',this)">🎨 تنظیمات سایت</button>
+<button onclick="adTab('sec',this)">🔒 امنیت</button>
+</div>
+<div id="ad-main">
+<div id="tab-dash">
+<div class="dstats">
+<div><b id="dProd">۰</b><span>محصول فعال</span></div>
+<div><b id="dVisit">۰</b><span>بازدید کل</span></div>
+<div><b id="dCart">۰</b><span>افزودن به سبد</span></div>
+<div><b id="dAi">—</b><span>وضعیت AI</span></div>
+</div>
+<div class="adcard" style="margin-top:14px"><h4>خوش آمدید</h4>
+<button class="abtn blue" id="anBtn">🧠 تحلیل هوشمند آمار با AI</button>
+<div id="dashAi"></div>
+<p style="font-size:12px;color:var(--mut);margin-top:10px">از منوی کنار، بخش‌ها را مدیریت کنید. تغییرات بلافاصله روی سایت اعمال و در مرورگر شما ذخیره می‌شود؛ با «☁️ ذخیره ابری» برای همه دستگاه‌ها یکی می‌شود.</p>
+</div>
+</div>
+<div id="tab-prod" style="display:none">
+<div class="adcard"><h4>📦 فهرست محصولات <button class="abtn" style="float:left" onclick="prodNew()">＋ افزودن محصول</button></h4>
+<table class="ptable"><thead><tr><th></th><th>نام</th><th>دسته</th><th>قیمت</th><th>عملیات</th></tr></thead><tbody id="ptbody"></tbody></table>
+</div>
+<div class="adcard" id="pform" style="display:none"><h4 id="pfTitle">➕ محصول جدید</h4>
+<button class="abtn blue" id="kwBtn" style="margin-bottom:10px">🤖 تولید کلمات کلیدی با AI</button>
+<div class="frow"><div class="fin"><label>نام محصول</label><input id="f_title"></div><div class="fin"><label>دسته</label><select id="f_cat"><option value="ربات">ربات هوشمند</option><option value="تخصصی">AI تخصصی</option><option value="AI">ابزار AI</option><option value="اتوماسیون">اتوماسیون</option><option value="سایت">طراحی سایت</option></select></div></div>
+<div class="frow"><div class="fin"><label>قیمت (تومان)</label><input id="f_price" type="number"></div><div class="fin"><label>قیمت قبل (اختیاری)</label><input id="f_old" type="number"></div></div>
+<div class="frow"><div class="fin"><label>بج (جدید/پرفروش…)</label><input id="f_badge" value="جدید"></div><div class="fin"><label>درصد تخفیف (مثلاً ۱۵٪)</label><input id="f_off" value="۱۰٪"></div></div>
+<div class="frow one"><div class="fin"><label>آدرس تصویر</label><input id="f_img"></div></div>
+<div class="frow one"><div class="fin"><label>لینک سفارش بله</label><input id="f_ble" value="https://ble.ir/admin_seller_bot?start=product-"></div></div>
+<div class="frow one"><div class="fin"><label>کلمات کلیدی جستجو (با فاصله)</label><input id="f_key"></div></div>
+<button class="abtn" onclick="prodSave()">💾 ذخیره محصول</button>
+<button class="abtn ghost" onclick="document.getElementById('pform').style.display='none'">انصراف</button>
+</div>
+</div>
+<div id="tab-ai" style="display:none">
+<div class="adcard"><h4>🤖 اتصال API هوش مصنوعی (AvalAI / سازگار با OpenAI)</h4>
+<div class="frow"><div class="fin"><label>فعال‌سازی چت هوشمند ماسکوت</label><select id="ai_on"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div><div class="fin"><label>مدل</label><select id="ai_model"><option>gpt-4o-mini</option><option>gpt-4o</option><option>claude-3-5-sonnet</option><option>gemini-1.5-pro</option><option>deepseek-chat</option></select></div></div>
+<div class="frow one"><div class="fin"><label>آدرس پایه API</label><input id="ai_base" value="https://api.avalai.ir/v1/"></div></div>
+<div class="frow one"><div class="fin"><label>کلید API (سکرت)</label><input id="ai_key" type="password" placeholder="sk-…"></div></div>
+<div class="frow one"><div class="fin"><label>پرامپت سیستم (شخصیت دستیار)</label><textarea id="ai_sys" rows="3">تو دستیار هوشمند فروشگاه «باشگاه ربات های هوشمند» هستی. کوتاه، دوستانه و به فارسی جواب بده و در صورت نیاز به محصولات فروشگاه اشاره کن.</textarea></div></div>
+<button class="abtn" onclick="aiSave()">💾 ذخیره تنظیمات AI</button>
+<button class="abtn blue" onclick="aiTest()">🔌 تست اتصال</button>
+<p id="aiTestRes" style="font-size:11px;margin-top:10px;color:var(--mut)"></p>
+</div>
+<div class="adcard"><h4>✍️ دستیار تولید محتوا با AI</h4>
+<div class="frow one"><div class="fin"><label>موضوع</label><input id="ca_topic" placeholder="مثلاً: ربات فروش برای پیج اینستاگرام"></div></div>
+<button class="abtn blue" onclick="caGen()">✨ تولید متن تبلیغاتی</button>
+<div id="ca_out" style="margin-top:12px;font-size:12px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:12px;min-height:40px;white-space:pre-wrap"></div>
+</div>
+</div>
+<div id="tab-site" style="display:none">
+<div class="adcard"><h4>🎨 تنظیمات زنده سایت</h4>
+<div class="frow"><div class="fin"><label>شماره تلفن</label><input id="s_tel" value="۰۲۱-۳۶۹۱۷۵۸۶"></div><div class="fin"><label>متن نوار اعلان</label><input id="s_notice" value="خرید اعتباری !!! تماس بگیرید"></div></div>
+<div class="frow"><div class="fin"><label>تیتر بنر اصلی</label><input id="s_h1" value="خرید اعتباری"></div><div class="fin"><label>زیرتیتر بنر</label><input id="s_hp" value="همین حالا بخرید، بعداً پرداخت کنید!"></div></div>
+<button class="abtn" onclick="siteSave()">💾 ذخیره و اعمال</button>
+<button class="abtn blue" id="seoBtn" style="margin-top:8px">📈 سئوساز خودکار با AI</button>
+</div>
+</div>
+<div id="tab-sec" style="display:none">
+<div class="adcard"><h4>🔒 تغییر رمز عبور پنل</h4>
+<div class="frow one"><div class="fin"><label>رمز جدید (حداقل ۴ کاراکتر)</label><input id="np1" type="password"></div></div>
+<button class="abtn" onclick="passSave()">💾 تغییر رمز</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="toast"></div>
+<button id="top" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+<nav class="bnav">
+<a href="#home"><b>⌂</b>خانه</a>
+<a href="#products"><b>▤</b>محصولات</a>
+<a href="#products" class="hot"><b>⌕</b>جستجو</a>
+<a class="hot" target="_blank" rel="noopener" href="https://ble.ir/admin_seller_bot?start=order-general"><b>◉</b>سفارش</a>
+<a href="#" onclick="event.preventDefault();toast('ورود | ثبت‌نام به‌زودی فعال می‌شود 🙂')"><b>◍</b>پروفایل</a>
+</nav>
+
+<script>
+const =s=>[...document.querySelectorAll(s)];
+const fa=n=>Number(n).toLocaleString('fa-IR');
+const p2=n=>Number(n).toLocaleString('fa-IR',{minimumIntegerDigits:2,useGrouping:false});
+const enD=s=>String(s).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
+let cart=0,curCat='همه',curSort='pop',query='',more=false;
+let PRODS=LS.get('BR_PRODUCTS',null);
+LS.set('BR_VISITS',LS.get('BR_VISITS',0)+1);
+function hideLoader(){latex
+('#loader').classList.add('hide')} if(document.readyState==='complete')setTimeout(hideLoader,400);else addEventListener('load',()=&gt;setTimeout(hideLoader,400)); function toast(m){const t=
+
+('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)}
+function burst(x,y){for(let i=0;i<12;i++){const s=document.createElement('i');s.className='spark';const a=Math.random()Math.PI2,d=40+Math.random()55;s.style.left=x+'px';s.style.top=y+'px';s.style.setProperty('--dx',Math.cos(a)d+'px');s.style.setProperty('--dy',Math.sin(a)d+'px');s.style.background=['#22a55b','#f4c542','#3d8fd8'][i%3];document.body.appendChild(s);setTimeout(()=>s.remove(),700)}}
+function addCart(n,e){cart++;LS.set('BR_CART',LS.get('BR_CART',0)+1);('#cartTxt').textContent=fa(cart)+' قلم';if(e&&e.clientX)burst(e.clientX,e.clientY);toast('«'+n+'» به سبد خرید اضافه شد 🛒')} function goBale(p){toast('در حال انتقال به بله برای نهایی‌سازی سفارش…');setTimeout(()=&gt;open('https://ble.ir/admin_seller_bot?start='+p,'_blank'),700)} function setCat(c,scroll){curCat=c;('#catchips [data-cat]').forEach(x=>x.classList.toggle('on',x.dataset.cat===c));apply();if(scroll)('#products').scrollIntoView({behavior:'smooth'})} function setSort(s,el){curSort=s;('#catchips [data-sort]').forEach(x=>x.classList.remove('on'));el.classList.add('on');apply()}
+function doSearch(v){query=v.trim();apply();const n=('#pgrid .pcard').filter(c=&gt;c.style.display!=='none').length;if(query.length&gt;1){('#products').scrollIntoView({behavior:'smooth'});const c=aiCfg();if(n===0&&c.on&&c.key){aiAsk('کاربر دنبال «'+query+'» است. محصولات ما: '+(PRODS||scrape()).map(p=>p.title).join('، ')+'. نزدیک‌ترین را با یک جمله معرفی کن یا صادقانه بگو موجود نیست.').then(t=>{('#spTxt').textContent='🤖 '+t;('#spop').classList.add('show');setTimeout(()=>('#spop').classList.remove('show'),6500)}).catch(()=&gt;{})}}} function toggleMore(){more=!more;('#moreBtn').textContent=more?'نمایش کمتر':'مشاهده همه';apply()}
+function apply(){
+const g=('#pgrid'),cards=('.pcard');
+cards.forEach(c=>{
+const mC=curCat==='همه'||c.dataset.cat===curCat;
+const mQ=!query||c.dataset.key.includes(query);
+const mE=more||!c.hasAttribute('data-extra');
+c.style.display=(mC&&mQ&&mE)?'':'none';
+});
+const order={pop:(a,b)=>b.dataset.pop-a.dataset.pop,new:(a,b)=>b.dataset.new-a.dataset.new,cheap:(a,b)=>a.dataset.price-b.dataset.price,exp:(a,b)=>b.dataset.price-a.dataset.price};
+cards.sort(order[curSort]).forEach(c=>g.appendChild(c));
+if(query)toast(fa(cards.filter(c=>c.style.display!=='none').length)+' محصول پیدا شد');
+}
+/ تم /
+function applyTheme(t){document.body.classList.toggle('coffee',t==='coffee');('#flames').textContent=t==='coffee'?'☕☕☕☕☕☕':'🔥🔥🔥'} applyTheme(localStorage.getItem('BR_THEME')||'coffee'); ('#themeBtn').onclick=()=>{const t=document.body.classList.contains('coffee')?'green':'coffee';localStorage.setItem('BR_THEME',t);applyTheme(t);toast(t==='coffee'?'تم قهوه‌ای فعال شد ☕':'تم سبز فعال شد 💚')};
+/ زنده‌ها /
+setInterval(()=>{('#liveDate').textContent='📅 '+new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())},1000); const words=['ربات فروش هوشمند','دستیار سازمانی','اتوماسیون سفارش','سایت فروش‌محور','تولید محتوای AI'];let wi=0,ci=0,del=false; (function type(){const w=words[wi];ci+=del?-1:1;const el=('#type');if(el)el.textContent=w.slice(0,ci);if(!del&&ci===w.length){del=true;return setTimeout(type,1500)}if(del&&ci===0){del=false;wi=(wi+1)%words.length}setTimeout(type,del?35:90)})();
+const ticks=['سفارش جدید: ربات فروش — تهران · ۲ دقیقه پیش','سفارش جدید: پکیج اتوماسیون — اصفهان · ۷ دقیقه پیش','مشاوره رایگان رزرو شد — شیراز · ۱۲ دقیقه پیش','سفارش جدید: طراحی سایت — مشهد · ۲۰ دقیقه پیش','نظر جدید: ★★★★★ — کرج · ۳۰ دقیقه پیش'];let ti=0;
+setInterval(()=>{const el=('#tickTxt');el.style.opacity=0;setTimeout(()=&gt;{ti=(ti+1)%ticks.length;el.textContent=ticks[ti];el.style.opacity=1},400)},4500); let on=124;setInterval(()=&gt;{on=Math.max(80,on+Math.floor(Math.random()*7)-3);('#online').textContent='● '+fa(on)+' آنلاین'},5000);
+function cd(){const n=new Date(),e=new Date(n);e.setDate(n.getDate()+((7-n.getDay())%7||7));e.setHours(23,59,59,0);let d=Math.max(0,e-n);('#cd').textContent=p2(Math.floor(d/36e5))+':'+p2(Math.floor(d%36e5/6e4))+':'+p2(Math.floor(d%6e4/1e3))} setInterval(cd,1000);cd(); const SPIMG=['https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open','https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open','https://u234128125.p.clickup-attachments.com/u234128125/3356e8b4-d681-40df-8cc0-148a51b272ed/generated-image-66d1c810-f855-4eed-8354-7684ffb6f371.png?view=open','https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open','https://u234128125.p.clickup-attachments.com/u234128125/46136ea0-9630-4f2d-9913-97ad8a0bc33a/generated-image-06224b19-be20-4327-ac80-c5064516cfdf.png?view=open']; const spops=[{i:0,m:'🛒 همین حالا: «ربات فروش» از تهران خریداری شد'},{i:2,m:'⚙️ «پکیج اتوماسیون» برای اصفهان فعال شد'},{i:1,m:'💬 مشاوره رایگان با شیراز شروع شد'},{i:4,m:'🖥 پروژه «طراحی سایت» مشهد تحویل شد'},{i:3,m:'✨ «تولید محتوای AI» برای برندی در کرج فعال شد'}]; let si=0; setInterval(()=&gt;{const s=spops[si%spops.length];si++;('#spImg').src=SPIMG[s.i];('#spTxt').textContent=s.m;('#spop').classList.add('show');setTimeout(()=>('#spop').classList.remove('show'),5200)},14000); const rio=new IntersectionObserver(es=&gt;es.forEach(e=&gt;{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.1}); ('.rv').forEach(el=>rio.observe(el));
+/ سه‌بعدی /
+function bindTilt(){('.pcard,.bn').forEach(el=&gt;{if(el._t)return;el._t=1; el.addEventListener('mousemove',e=&gt;{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.setProperty('--gx',x*100+'%');el.style.setProperty('--gy',y*100+'%');el.style.transform='perspective(900px) rotateY('+((x-.5)*7).toFixed(2)+'deg) rotateX('+((.5-y)*7).toFixed(2)+'deg) translateY(-4px)'}); el.addEventListener('mouseleave',()=&gt;el.style.transform='')})} bindTilt(); ('.hbanner').addEventListener('mousemove',e=>{const r=('.hbanner').getBoundingClientRect();('.hbanner').style.setProperty('--mx',(e.clientX-r.left)+'px');('.hbanner').style.setProperty('--my',(e.clientY-r.top)+'px')}); ('.btn-g,.btn-w,.add').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2).12).toFixed(1)+'px,'+((e.clientY-r.top-r.height/2).22).toFixed(1)+'px)'});b.addEventListener('mouseleave',()=>b.style.transform='')});
+if(matchMedia('(pointer:fine)').matches){
+let gx=innerWidth/2,gy=innerHeight/2,tx=gx,ty=gy;
+addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;
+const m=('#mascot');if(m){const r=m.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,a=Math.atan2(e.clientY-cy,e.clientX-cx),d=Math.min(2.6,Math.hypot(e.clientX-cx,e.clientY-cy)/60);('.pupil').forEach(p=>p.setAttribute('transform','translate('+(Math.cos(a)d).toFixed(1)+','+(Math.sin(a)d).toFixed(1)+')'))}});
+(function loop(){gx+=(tx-gx).08;gy+=(ty-gy).08;const g=('#glow');g.style.left=gx+'px';g.style.top=gy+'px';requestAnimationFrame(loop)})(); }else{('#glow').style.display='none'}
+addEventListener('scroll',()=>{
+('#top').classList.toggle('show',scrollY&gt;600); const sh=('.shapes');if(sh)sh.style.transform='translateY('+scrollY-.06+'px)';
+const h=document.documentElement;latex
+('#prog').style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%'; }); /* AI */ function aiCfg(){return LS.get('BR_AI',{on:false,base:'https://api.avalai.ir/v1/',key:'',model:'gpt-4o-mini',sys:'تو دستیار هوشمند فروشگاه «باشگاه ربات های هوشمند» هستی. کوتاه، دوستانه و به فارسی جواب بده.',temp:0.7})} async function aiAsk(msg,hist){const c=aiCfg();const r=await fetch(c.base.replace(/\/?
+
+/,'/')+'chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+c.key},body:JSON.stringify({model:c.model,temperature:c.temp,messages:[{role:'system',content:c.sys},...(hist||[]),{role:'user',content:msg}]})});if(!r.ok)throw 0;const j=await r.json();return j.choices[0].message.content}
+function aiStateUI(){const c=aiCfg();latex
+('#adAiState').textContent=c.on&&c.key?'AI فعال ✅':'AI خاموش';
+
+('#aiBadge').textContent=c.on&&c.key?'هوش مصنوعی واقعی 🤖':'آنلاین'}
+aiStateUI();
+let chatHist=[],speakOn=false,lastSpoken=null;
+function speak(t){if(!('speechSynthesis'in window))return;speechSynthesis.speak(new SpeechSynthesisUtterance(t))}
+new MutationObserver(()=>{if(!speakOn)return;const m=latex
+('#cbd .msg.bot').pop();if(m&&m!==lastSpoken){lastSpoken=m;speak(m.textContent)}}).observe(
+
+('#cbd'),{childList:true});
+function greet(){const h=new Date().getHours();return h<12?'صبح بخیر ☀️':h<17?'ظهر بخیر 🌤':'شب بخیر 🌙'}
+const brain=[[/سلام|درود/,'سلام! 👋 من دستیار هوشمند باشگاهم. چطور کمکت کنم؟'],[/قیمت|چند|هزینه/,'قیمت همه محصولات روی کارت‌ها نوشته شده؛ برای قیمت اختصاصی «درخواست مشاوره» بزن 🙂'],[/تحویل|زمان|کی/,'ربات‌های آماده همان روز تحویل می‌شوند؛ پروژه اختصاصی ۳ تا ۱۴ روز کاری.'],[/پرداخت|اعتباری/,'پرداخت امن بانکی و خرید اعتباری داریم؛ از نوار بالای صفحه تماس بگیر 💚'],[/سفارش|بله|خرید/,'روی «◉ سفارش از بله» هر محصول بزن تا با کد مرجع به ربات وصل شوی.'],[/پشتیبانی/,'پشتیبانی ۲۴ ساعته‌ایم؛ از دکمه «ارتباط با پشتیبانی در بله» پیام بده.'],[/.*/,'پیامت ثبت شد! برای پاسخ فوری‌تر، «ارتباط با پشتیبانی در بله» را بزن 💚']];
+const fallback=v=>(brain.find(b=>b[0].test(v))||brain[brain.length-1])[1];
+function addMsg(t,cls,html){const d=document.createElement('div');d.className='msg '+cls;html?d.innerHTML=t:d.textContent=t;latex
+('#cbd').appendChild(d);
+
+('#cbd').scrollTop=1e4;return d}
+function sendChat(){const i=latex
+('#cin'),v=i.value.trim();if(!v)return;addMsg(v,'us');i.value=''; const ty=addMsg('&lt;span class="typing"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;','bot',1); const c=aiCfg(); if(c.on&&c.key){aiAsk(v,chatHist.slice(-8)).then(t=&gt;{ty.remove();addMsg(t,'bot');chatHist.push({role:'user',content:v},{role:'assistant',content:t})}).catch(()=&gt;{ty.remove();addMsg(fallback(v),'bot');toast('اتصال AI برقرار نشد؛ پاسخ خودکار فعال شد')})} else setTimeout(()=&gt;{ty.remove();addMsg(fallback(v),'bot')},900)} function askChip(t){
+
+('#chat').classList.add('open');latex
+('#cin').value=t;sendChat()} 
+
+('#mascot').onclick=()=>{const c=latex
+('#chat');c.classList.toggle('open');if(!
+
+('#cbd').children.length)addMsg(greet()+'! من همین‌جا هستم؛ هر سوالی داری بپرس 👋','bot')};
+latex
+('#micBtn').onclick=()=&gt;{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast('مرورگر از تشخیص صدا پشتیبانی نمی‌کند');const r=new SR();r.lang='fa-IR';r.onresult=e=&gt;{
+
+('#cin').value=e.results[0][0].transcript};r.start();toast('🎤 صحبت کن…')};
+latex
+('#spkBtn').onclick=()=&gt;{speakOn=!speakOn;
+('#spkBtn').style.background=speakOn?'var(--gold)':'#565b63';toast(speakOn?'خواندن صوتی فعال شد 🔊':'خواندن صوتی خاموش شد')};
+/* مشاور خرید /
+('#advBtn').onclick=()=&gt;('#adv').classList.add('open');
+async function advRun(){const q=('#advQ').value.trim();if(!q)return toast('نیازت را بنویس');('#advOut').textContent='🤖 در حال فکر کردن…';const list=(PRODS||scrape()).map(p=>p.title+' ('+p.price.toLocaleString('fa-IR')+' تومان)').join('، ');
+try{('#advOut').textContent=await aiAsk('کاربر می‌گوید: '+q+'\nمحصولات ما: '+list+'\nفقط نام نزدیک‌ترین محصول و یک جمله دلیل پیشنهاد را بنویس.')}catch(e){const f=(PRODS||scrape()).find(p=&gt;q.split(' ').some(w=&gt;w.length&gt;2&&p.key.includes(w)));('#advOut').textContent=f?('پیشنهاد ما: '+f.title+' — برای مشاوره دقیق‌تر، AI را در پنل فعال کن.'):'AI در دسترس نیست؛ کلید API را در پنل تنظیم کن.'}}
+/ پیشنهاد روز /
+(function(){const c=aiCfg();if(!(c.on&&c.key))return;aiAsk('از بین این محصولات یکی را به‌عنوان پیشنهاد امروز با یک جمله جذاب معرفی کن: '+(PRODS||scrape()).map(p=>p.title).join('، ')).then(t=>ticks.unshift('🤖 پیشنهاد هوشمند روز: '+t)).catch(()=>{})})();
+/ پنل */
+let adAuth=sessionStorage.etIttem('BR_ADMIN')==='1',editIdx=-1;
+function openAdmin(){latex
+('#admin').classList.add('open');
+
+('#adlogin').style.display=adAuth?'none':'flex';if(adAuth)adRefresh()}
+function adClose(){latex
+('#admin').classList.remove('open')} function adLogin(){if(
+
+('#adpass').value===LS.get('BR_PASS','1234')){adAuth=true;sessionStorage.setItem('BR_ADMIN','1');latex
+('#adlogin').style.display='none';adRefresh();toast('خوش آمدید 👋')}else toast('رمز عبور اشتباه است ❌')} function adTab(t,el){
+
+('#ad-side button').forEach(b=>b.classList.remove('on'));el.classList.add('on');['dash','prod','ai','site','sec'].forEach(x=>latex
+('#tab-'+x).style.display=x===t?'':'none');if(t==='dash')dashRender();if(t==='prod')prodTable();if(t==='ai')aiFill();if(t==='site')siteFill()} function adRefresh(){dashRender();aiStateUI()} function dashRender(){
+
+('#dProd').textContent=fa((PRODS||scrape()).length);latex
+('#dVisit').textContent=fa(LS.get('BR_VISITS',0));
+
+('#dCart').textContent=fa(LS.get('BR_CART',0));const c=aiCfg();latex
+('#dAi').textContent=c.on&&c.key?'✅':'❌'} function scrape(){return 
+
+('#pgrid .pcard').map(c=>({cat:c.dataset.cat,price:+c.dataset.price,pop:+c.dataset.pop,nw:+c.dataset.new,key:c.dataset.key,extra:c.hasAttribute('data-extra'),badge:(c.querySelector('.pbadge')||{}).textContent||'جدید',img:c.querySelector('img').src,title:c.querySelector('h3').textContent,brand:c.querySelector('.pbrand').textContent,old:c.querySelector('.pprice s')?c.querySelector('.pprice s').textContent:'',now:c.querySelector('.now').innerHTML,off:c.querySelector('.off')?c.querySelector('.off').textContent:'',ble:c.querySelector('.ble').href,name:c.querySelector('h3').textContent.slice(0,22)}))}
+function cardHTML(p){return '<article class="pcard" data-cat="'+p.cat+'" data-price="'+p.price+'" data-pop="'+(p.pop||50)+'" data-new="'+(p.nw||1)+'" data-key="'+p.key+'"'+(p.extra?' data-extra="1"':'')+'><div class="pimg"><span class="pbadge">'+p.badge+'</span><img loading="lazy" src="'+p.img+'" alt=""></div><span class="pbrand">'+p.brand+'</span><h3>'+p.title+'</h3><div class="pprice">'+(p.old?'<s>'+p.old+'</s>':'')+'<span class="now">'+p.now+'</span>'+(p.off?'<span class="off">'+p.off+'</span>':'')+'</div><button class="add" onclick="addCart(''+p.name.replace(/'/g,'')+'',event)">＋ افزودن به سبد</button><a class="ble" target="_blank" rel="noopener" href="'+p.ble+'">◉ سفارش از بله</a></article>'}
+function renderProducts(){latex
+('#pgrid').innerHTML=PRODS.map(cardHTML).join('');bindTilt();apply()} function prodTable(){if(!PRODS)PRODS=scrape();
+
+('#ptbody').innerHTML=PRODS.map((p,i)=>'<tr><td><img src="'+p.img+'"></td><td>'+p.title.slice(0,34)+'…</td><td><span class="pill">'+p.cat+'</span></td><td>'+p.price.toLocaleString('fa-IR')+'</td><td><button class="abtn blue" style="padding:4px 10px" onclick="prodEdit('+i+')">✏️</button> <button class="abtn ghost" style="padding:4px 10px" onclick="prodDel('+i+')">🗑</button></td></tr>').join('')}
+function prodNew(){editIdx=-1;latex
+('#pfTitle').textContent='➕ محصول جدید';['f_title','f_price','f_old','f_key'].forEach(id=&gt;
+
+('#'+id).value='');latex
+('#f_img').value=SPIMG[0];
+
+('#pform').style.display=''}
+function prodEdit(i){editIdx=i;const p=PRODS[i];latex
+('#pfTitle').textContent='✏️ ویرایش: '+p.title.slice(0,24);
+
+('#f_title').value=p.title;latex
+('#f_cat').value=p.cat;
+
+('#f_price').value=p.price;latex
+('#f_old').value=p.old?enD(p.old.replace(/[^\d۰-۹]/g,'')):'';
+
+('#f_badge').value=p.badge;latex
+('#f_off').value=p.off;
+
+('#f_img').value=p.img;latex
+('#f_ble').value=p.ble;
+
+('#f_key').value=p.key;latex
+('#pform').style.display=''} function prodSave(){const t=
+
+('#f_title').value.trim();if(!t)return toast('نام محصول الزامی است');const price=+latex
+('#f_price').value||0;const oldN=+
+
+('#f_old').value||0;const off=price&&oldN?fa(Math.round((1-price/oldN)*100))+'٪':latex
+('#f_off').value; const p={cat:
+
+('#f_cat').value,price,pop:50,nw:Date.now()%1000,key:(latex
+('#f_key').value||t),extra:false,badge:
+
+('#f_badge').value||'جدید',img:latex
+('#f_img').value||SPIMG[0],title:t,brand:'باشگاه ربات‌های هوشمند • '+
+
+('#f_cat').value,old:oldN?oldN.toLocaleString('fa-IR'):'',now:(price?price.toLocaleString('fa-IR'):'قیمت بر اساس پروژه')+' <i>تومان</i>',off,ble:latex
+('#f_ble').value,name:t.slice(0,22)}; if(editIdx&gt;-1)PRODS[editIdx]=p;else PRODS.push(p); LS.set('BR_PRODUCTS',PRODS);renderProducts();prodTable();
+
+('#pform').style.display='none';toast('محصول ذخیره شد 💾')}
+function prodDel(i){if(!confirm('حذف «'+PRODS[i].title.slice(0,24)+'…»؟'))return;PRODS.splice(i,1);LS.set('BR_PRODUCTS',PRODS);renderProducts();prodTable();toast('محصول حذف شد 🗑')}
+function aiFill(){const c=aiCfg();latex
+('#ai_on').value=c.on?'1':'0';
+
+('#ai_base').value=c.base;latex
+('#ai_key').value=c.key;
+
+('#ai_model').value=c.model;latex
+('#ai_sys').value=c.sys} function aiSave(){LS.set('BR_AI',{on:
+
+('#ai_on').value==='1',base:latex
+('#ai_base').value,key:
+
+('#ai_key').value.trim(),model:latex
+('#ai_model').value,sys:
+
+('#ai_sys').value,temp:0.7});aiStateUI();toast('تنظیمات AI ذخیره شد 🤖')}
+async function aiTest(){latex
+('#aiTestRes').textContent='در حال تست…';try{const t=await aiAsk('سلام، یک جواب یک‌خطی بده.');
+
+('#aiTestRes').textContent='✅ اتصال برقرار شد — پاسخ مدل: '+t}catch(e){latex
+('#aiTestRes').textContent='❌ اتصال ناموفق بود. کلید/آدرس را بررسی کن.'}} async function caGen(){const t=
+
+('#ca_topic').value.trim();if(!t)return toast('موضوع را بنویس');latex
+('#ca_out').textContent='✍️ در حال نوشتن…';try{
+
+('#ca_out').textContent=await aiAsk('یک متن تبلیغاتی کوتاه و جذاب فارسی (حداکثر ۲ جمله) درباره: '+t)}catch(e){latex
+('#ca_out').textContent='❌ خطا در اتصال به API'}} 
+
+('#kwBtn').onclick=async()=>{const t=latex
+('#f_title').value;if(!t)return toast('اول نام محصول را بنویس');try{
+
+('#f_key').value=await aiAsk('برای محصول «'+t+'» حداکثر ۸ کلمات کلیدی فارسی جستجو با فاصله بنویس، بدون توضیح.')}catch(e){toast('AI در دسترس نیست')}};
+latex
+('#seoBtn').onclick=async()=&gt;{toast('در حال نوشتن سئو…');try{const t=await aiAsk('برای فروشگاه «باشگاه ربات های هوشمند» یک title سئو (حداکثر ۶۰ حرف) و یک description (حداکثر ۱۵۰ حرف) فارسی بنویس؛ خط اول title و خط دوم desc.');const L=t.split('\n');document.title=L[0].replace(/title:/i,'').trim();const m=document.querySelector('meta[name=description]');if(m)m.content=(L[1]||'').replace(/desc:/i,'').trim();toast('📈 سئو اعمال شد')}catch(e){toast('AI در دسترس نیست')}}; 
+
+('#anBtn').onclick=async()=>{try{latex
+('#dashAi').textContent='🤖 '+await aiAsk('با این آمار فروشگاه یک تحلیل دو جمله‌ای فارسی و یک پیشنهاد بهبود بنویس: تعداد محصول:'+(PRODS||scrape()).length+'، بازدید کل:'+LS.get('BR_VISITS',0)+'، افزودن به سبد:'+LS.get('BR_CART',0))}catch(e){
+
+('#dashAi').textContent='AI در دسترس نیست'}};
+function siteFill(){const s=LS.get('BR_SITE',{});latex
+('#s_tel').value=s.tel||'۰۲۱-۳۶۹۱۷۵۸۶';
+
+('#s_notice').value=s.notice||'خرید اعتباری !!! تماس بگیرید';latex
+('#s_h1').value=s.h1||'خرید اعتباری';
+
+('#s_hp').value=s.hp||'همین حالا بخرید، بعداً پرداخت کنید!'}
+function siteSave(){const s={tel:latex
+('#s_tel').value,notice:
+
+('#s_notice').value,h1:latex
+('#s_h1').value,hp:
+
+('#s_hp').value};LS.set('BR_SITE',s);applySite();toast('تنظیمات سایت اعمال شد 🎨')}
+function applySite(){const s=LS.get('BR_SITE',null);if(!s)return;
+if(s.tel){const d=s.tel.replace(/\D/g,'');('.teln').forEach(x=>x.textContent=s.tel)}
+if(s.notice)latex
+('#noticeA').textContent=s.notice; if(s.h1)
+
+('#heroH1').textContent=s.h1;
+if(s.hp)latex
+('#heroP').textContent=s.hp} function passSave(){const v=
+
+('#np1').value;if(v.length<4)return toast('رمز حداقل ۴ کاراکتر');LS.set('BR_PASS',v);latex
+('#np1').value='';toast('رمز عبور تغییر کرد 🔒')} applySite(); /* ابر (getpantry) */ const CLOUD_ID=''; /* ← UUID فضای ابری را بعد از ساخت اینجا بگذار */ const CID=()=&gt;(CLOUD_ID||LS.get('BR_CLOUD','')).trim(); const PB=id=&gt;'https://getpantry.cloud/apiv1/pantry/'+id+'/basket/site'; const collect=()=&gt;({site:LS.get('BR_SITE',null),prods:PRODS||scrape(),ai:LS.get('BR_AI',null),pass:LS.get('BR_PASS','1234')}); async function cloudCreate(){toast('در حال ساخت فضای ابری… ☁️'); try{const r=await fetch('https://getpantry.cloud/apiv1/pantry/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'BashgahRobot',description:'cloud config',contactEmail:'admin@site.ir'})}); if(!r.ok)throw 0;const j=await r.json();const id=j.uuid||j.id||'';if(!id)throw 0; LS.set('BR_CLOUD',id); prompt('✅ فضای ابری ساخته شد! این UUID را در خط CLOUD_ID داخل ماژول بگذار و فایل را ذخیره کن:',id); return id}catch(e){toast('❌ ساخت فضای ابری ناموفق بود — اینترنت را چک کن');return null}} async function cloudPush(){let id=CID();if(!id)id=await cloudCreate();if(!id)return; try{const r=await fetch(PB(id),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collect())}); if(!r.ok)throw 0;toast('☁️ در ابر ذخیره شد — برای همه دستگاه‌ها')} catch(e){toast('❌ ذخیره ابری ناموفق بود')}} async function cloudPull(){const id=CID();if(!id){toast('اول با دکمه «☁️ ذخیره ابری» یک فضای ابری بساز');return} try{const r=await fetch(PB(id));if(!r.ok)throw 0;const d=await r.json(); if(d.site)LS.set('BR_SITE',d.site);if(d.ai)LS.set('BR_AI',d.ai);if(d.pass)LS.set('BR_PASS',d.pass); if(d.prods&&d.prods.length){PRODS=d.prods;LS.set('BR_PRODUCTS',PRODS);renderProducts()} applySite();aiStateUI();toast('☁️ تنظیمات ابری بارگذاری شد')} catch(e){toast('❌ دریافت ابری ناموفق بود — UUID یا اینترنت را چک کن')}} ['siteSave','prodSave','prodDel','aiSave','passSave'].forEach(n=&gt;{const o=window[n];if(o)window[n]=function(){const r=o.apply(this,arguments);cloudPush();return r}}); if(CID())cloudPull(); if(location.hash==='#admin')openAdmin(); const io=new IntersectionObserver(es=&gt;es.forEach(e=&gt;{if(e.isIntersecting){const el=e.target,end=+el.dataset.n;let s=0;const iv=setInterval(()=&gt;{s+=Math.ceil(end/60);if(s&gt;=end){s=end;clearInterval(iv)}el.textContent='+'+fa(s)},30);io.unobserve(el)}}),{threshold:.6}); 
+
+('.cnt').forEach(el=>io.observe(el));
+apply();
+</script>
+</body>
+</html>
