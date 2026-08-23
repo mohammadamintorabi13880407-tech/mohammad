@@ -304,7 +304,7 @@ footer .fl a:hover{color:var(--green)}
     </a>
     <div class="hsearch"><input id="sin" type="text" placeholder="جستجو" oninput="doSearch(this.value)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
     <div class="hact">
-      <a class="htel" href="tel:+982136917586"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="teln">۰۲۱-۳۶۹۷۵۸</span></a>
+      <a class="htel" href="tel:+982136917586"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="teln">۰۲۱-۳۶۹۱۷۵۸۶</span></a>
       <span class="sep"></span>
       <button class="cartbox" onclick="goBale('order-general')" title="سبد خرید"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span><b>سبد خرید</b><small id="cartTxt">خالی</small></span></button>
       <button class="burger" onclick="toast('منوی کامل در ناوبری پایین فعال است 🙂')">☰</button>
@@ -732,6 +732,62 @@ if(location.hash==='#admin')openAdmin();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=+el.dataset.n;let s=0;const iv=setInterval(()=>{s+=Math.ceil(end/60);if(s>=end){s=end;clearInterval(iv)}el.textContent='+'+fa(s)},30);io.unobserve(el)}}),{threshold:.6});
 $$('.cnt').forEach(el=>io.observe(el));
 apply();
+
+/* ══════════ ماژول ارتقا (نسخه تعمیرشده): ابر + AI پیشرفته ══════════ */
+const CLOUD_ID=''; /* ← UUID فضای ابری را بعد از ساخت اینجا بگذار */
+const CID=()=>(CLOUD_ID||LS.get('BR_CLOUD','')).trim();
+const PB=id=>'https://getpantry.cloud/apiv1/pantry/'+id+'/basket/site';
+const collect=()=>({site:LS.get('BR_SITE',null),prods:PRODS||scrape(),ai:LS.get('BR_AI',null),pass:LS.get('BR_PASS','1234')});
+async function cloudCreate(){toast('در حال ساخت فضای ابری… ☁️');
+ try{const r=await fetch('https://getpantry.cloud/apiv1/pantry/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'BashgahRobot',description:'cloud config',contactEmail:'admin@site.ir'})});
+  if(!r.ok)throw 0;const j=await r.json();const id=j.uuid||j.id||'';if(!id)throw 0;
+  LS.set('BR_CLOUD',id);
+  prompt('✅ فضای ابری ساخته شد! برای اینکه همه دستگاه‌ها یکی شوند، این UUID را در خط CLOUD_ID داخل ماژول بگذار و فایل را ذخیره کن:',id);
+  return id}catch(e){toast('❌ ساخت فضای ابری ناموفق بود — اینترنت را چک کن');return null}}
+async function cloudPush(){let id=CID();if(!id)id=await cloudCreate();if(!id)return;
+ try{const r=await fetch(PB(id),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collect())});
+  if(!r.ok)throw 0;toast('☁️ در ابر ذخیره شد — برای همه دستگاه‌ها')}
+ catch(e){toast('❌ ذخیره ابری ناموفق بود')}}
+async function cloudPull(){const id=CID();if(!id){toast('اول با دکمه «☁️ ذخیره ابری» یک فضای ابری بساز');return}
+ try{const r=await fetch(PB(id));if(!r.ok)throw 0;const d=await r.json();
+  if(d.site)LS.set('BR_SITE',d.site);if(d.ai)LS.set('BR_AI',d.ai);if(d.pass)LS.set('BR_PASS',d.pass);
+  if(d.prods&&d.prods.length){PRODS=d.prods;LS.set('BR_PRODUCTS',PRODS);renderProducts()}
+  applySite();aiStateUI();toast('☁️ تنظیمات ابری بارگذاری شد')}
+ catch(e){toast('❌ دریافت ابری ناموفق بود — UUID یا اینترنت را چک کن')}}
+['siteSave','prodSave','prodDel','aiSave','passSave'].forEach(n=>{const o=window[n];if(o)window[n]=function(){const r=o.apply(this,arguments);cloudPush();return r}});
+(function(){const h=$('#ad-hd');if(!h)return;const x=h.querySelector('.x');
+ const b1=document.createElement('button');b1.className='x';b1.textContent='☁️ ذخیره ابری';b1.onclick=cloudPush;
+ const b2=document.createElement('button');b2.className='x';b2.textContent='📥 دریافت ابری';b2.onclick=cloudPull;
+ h.insertBefore(b2,x);h.insertBefore(b1,x)})();
+if(CID())cloudPull();
+/* ── استایل ── */
+document.head.insertAdjacentHTML('beforeend','<style>#adv{position:fixed;inset:0;background:rgba(8,40,36,.5);backdrop-filter:blur(4px);z-index:150;display:none;align-items:center;justify-content:center}#adv.open{display:flex}.abox{background:#fff;border-radius:18px;padding:22px;width:min(430px,92%)}.abox textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12px;margin:8px 0;outline:none}#advOut{font-size:12px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px;margin-top:10px;white-space:pre-wrap;min-height:36px}.qchip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#565b63}</style>');
+/* ── مشاور خرید هوشمند ── */
+document.body.insertAdjacentHTML('beforeend','<div id="adv"><div class="abox"><b style="font-size:15px;font-weight:900">🤖 مشاور خرید هوشمند</b><p style="font-size:11px;color:var(--mut);margin-top:4px">نیازت را یک جمله بنویس تا از بین محصولات، بهترین را پیشنهاد دهم:</p><textarea id="advQ" rows="2" placeholder="مثلاً: برای اینستاگرامم می‌خوام سفارش‌ها رو خودکار جواب بدم…"></textarea><button class="abtn" onclick="advRun()">✨ پیشنهاد بده</button> <button class="abtn ghost" onclick="$(\'#adv\').classList.remove(\'open\')">بستن ✕</button><div id="advOut"></div></div></div>');
+const ab=document.createElement('button');ab.textContent='🤖 مشاور هوشمند';ab.style.cssText='border:1px solid var(--green);color:var(--green-d);border-radius:12px;padding:9px 14px;font-size:12px;font-weight:800;flex-shrink:0';ab.onclick=()=>$('#adv').classList.add('open');$('.hact').prepend(ab);
+async function advRun(){const q=$('#advQ').value.trim();if(!q)return toast('نیازت را بنویس');$('#advOut').textContent='🤖 در حال فکر کردن…';const list=(PRODS||scrape()).map(p=>p.title+' ('+p.price.toLocaleString('fa-IR')+' تومان)').join('، ');
+ try{$('#advOut').textContent=await aiAsk('کاربر می‌گوید: '+q+'\nمحصولات ما: '+list+'\nفقط نام نزدیک‌ترین محصول و یک جمله دلیل پیشنهاد را بنویس.')}catch(e){const f=(PRODS||scrape()).find(p=>q.split(' ').some(w=>w.length>2&&p.key.includes(w)));$('#advOut').textContent=f?('پیشنهاد ما: '+f.title+' — برای مشاوره دقیق‌تر، AI را در پنل فعال کن.'):'AI در دسترس نیست؛ کلید API را در پنل تنظیم کن.'}}
+/* ── جستجوی هوشمند ── */
+const _ds=window.doSearch;window.doSearch=function(v){_ds(v);const n=$$('#pgrid .pcard').filter(c=>c.style.display!=='none').length;const c=aiCfg();
+ if(v.trim().length>2&&n===0&&c.on&&c.key){aiAsk('کاربر دنبال «'+v+'» است. محصولات ما: '+(PRODS||scrape()).map(p=>p.title).join('، ')+'. نزدیک‌ترین را با یک جمله معرفی کن یا صادقانه بگو موجود نیست.').then(t=>{$('#spTxt').textContent='🤖 '+t;$('#spop').classList.add('show');setTimeout(()=>$('#spop').classList.remove('show'),6500)}).catch(()=>{})}};
+/* ── ارتقای چت: چیپ + صدا + بلندگو ── */
+(function(){const ft=$('#chat .ft');const row=document.createElement('div');row.style.cssText='display:flex;gap:6px;padding:8px 10px 0;background:#fff;flex-wrap:wrap';
+ ['قیمت‌ها؟','زمان تحویل؟','کدوم محصول به دردم می‌خوره؟'].forEach(t=>{const b=document.createElement('button');b.className='qchip';b.textContent=t;b.onclick=()=>{$('#cin').value=t;sendChat()};row.appendChild(b)});
+ ft.insertAdjacentElement('beforebegin',row);
+ const mic=document.createElement('button');mic.className='send';mic.style.background='var(--blue)';mic.textContent='🎤';mic.onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast('مرورگر از تشخیص صدا پشتیبانی نمی‌کند');const r=new SR();r.lang='fa-IR';r.onresult=e=>{$('#cin').value=e.results[0][0].transcript};r.start();toast('🎤 صحبت کن…')};ft.insertBefore(mic,ft.querySelector('.send'));
+ const spk=document.createElement('button');spk.className='send';spk.style.background='#565b63';spk.textContent='🔊';spk.onclick=()=>{speakOn=!speakOn;spk.style.background=speakOn?'var(--gold)':'#565b63';toast(speakOn?'خواندن صوتی فعال شد 🔊':'خواندن صوتی خاموش شد')};ft.insertBefore(spk,mic)})();
+let speakOn=false,lastSpoken=null;
+function speak(t){if(!('speechSynthesis'in window))return;const u=new SpeechSynthesisUtterance(t);u.lang='fa-IR';speechSynthesis.speak(u)}
+new MutationObserver(()=>{if(!speakOn)return;const m=$$('#cbd .msg.bot').pop();if(m&&m!==lastSpoken){lastSpoken=m;speak(m.textContent)}}).observe($('#cbd'),{childList:true});
+/* ── پیشنهاد روز توسط AI ── */
+(function(){const c=aiCfg();if(!(c.on&&c.key))return;const list=(PRODS||scrape()).map(p=>p.title).join('، ');
+ aiAsk('از بین این محصولات یکی را به‌عنوان پیشنهاد امروز با یک جمله جذاب معرفی کن: '+list).then(t=>ticks.unshift('🤖 پیشنهاد هوشمند روز: '+t)).catch(()=>{})})();
+/* ── ابزارهای AI پنل ── */
+(function(){const kw=document.createElement('button');kw.className='abtn blue';kw.style.marginBottom='10px';kw.textContent='🤖 تولید کلمات کلیدی با AI';kw.onclick=async()=>{const t=$('#f_title').value;if(!t)return toast('اول نام محصول را بنویس');try{$('#f_key').value=await aiAsk('برای محصول «'+t+'» حداکثر ۸ کلمات کلیدی فارسی جستجو با فاصله بنویس، بدون توضیح.')}catch(e){toast('AI در دسترس نیست')}};$('#pfTitle').insertAdjacentElement('afterend',kw);
+ const seo=document.createElement('button');seo.className='abtn blue';seo.style.marginTop='8px';seo.textContent='📈 سئوساز خودکار با AI';seo.onclick=async()=>{toast('در حال نوشتن سئو…');try{const t=await aiAsk('برای فروشگاه «باشگاه ربات های هوشمند» یک title سئو (حداکثر ۶۰ حرف) و یک description (حداکثر ۱۵۰ حرف) فارسی بنویس؛ خط اول title و خط دوم desc.');const L=t.split('\n');document.title=L[0].replace(/title:/i,'').trim();const m=document.querySelector('meta[name=description]');if(m)m.content=(L[1]||'').replace(/desc:/i,'').trim();toast('📈 سئو اعمال شد')}catch(e){toast('AI در دسترس نیست')}};$('#tab-site .abtn').insertAdjacentElement('afterend',seo);
+ const an=document.createElement('button');an.className='abtn blue';an.style.marginTop='10px';an.textContent='🧠 تحلیل هوشمند آمار با AI';an.onclick=async()=>{try{$('#dashAi').textContent='🤖 '+await aiAsk('با این آمار فروشگاه یک تحلیل دو جمله‌ای فارسی و یک پیشنهاد بهبود بنویس: تعداد محصول:'+(PRODS||scrape()).length+'، بازدید کل:'+LS.get('BR_VISITS',0)+'، افزودن به سبد:'+LS.get('BR_CART',0))}catch(e){$('#dashAi').textContent='AI در دسترس نیست'}};$('#tab-dash .adcard').firstElementChild.insertAdjacentElement('afterend',an);
+ const da=document.createElement('div');da.id='dashAi';da.style.cssText='font-size:12px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px;margin-top:10px;min-height:30px;white-space:pre-wrap';$('#tab-dash .adcard').appendChild(da)})();
+/* ══════════ پایان ماژول ارتقا ══════════ */
 </script>
 </body>
 </html>
