@@ -41,8 +41,12 @@ button{border:0;background:none;cursor:pointer}
 #loader small{font-size:11px;color:var(--mut)}
 @keyframes pop{to{transform:scale(1.12) rotate(-3deg)}}
 #prog{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--green),var(--gold));z-index:98}
-header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(--line)}
-.hbar{display:flex;align-items:center;gap:14px;padding:12px 0}
+/* هاله نور ماوس (ظریف) */
+#glow{position:fixed;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#c08a3e12,transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);display:none}
+header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(--line);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hbar{display:flex;align-items:center;gap:14px;padding:12px 0;transition:padding .3s}
+header.scrolled .hbar{padding:8px 0}
 .logo{display:flex;align-items:center;gap:9px;flex-shrink:0}
 .logo svg{width:44px;height:44px}
 .logo b{font-size:13.5px;font-weight:800;display:block;line-height:1.7}
@@ -57,7 +61,7 @@ header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(-
 .htel{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px}
 .htel svg{width:17px;height:17px;stroke:var(--ink)}
 .hact .sep{width:1px;height:30px;background:var(--line)}
-.cartbox,.profileBtn{display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:6px 13px;transition:.2s;background:#fff}
+.cartbox,.profileBtn{display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:6px 13px;transition:.2s;background:#fff;position:relative;overflow:hidden}
 .cartbox:hover,.profileBtn:hover{border-color:var(--green)}
 .cartbox svg,.profileBtn svg{width:20px;height:20px;stroke:var(--ink)}
 .cartbox b{font-size:11.5px;display:block;line-height:1.5}
@@ -68,14 +72,15 @@ header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 var(-
 .iconbtn svg{width:19px;height:19px}
 .burger{display:none;font-size:20px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:#fff}
 nav.main{display:flex;align-items:center;gap:2px;border-top:1px solid var(--line);padding:3px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-nav.main a{padding:9px 11px;font-size:12.5px;font-weight:600;color:#565b63;white-space:nowrap;border-radius:10px}
-nav.main a:hover{color:var(--green);background:#f0f9f4}
+nav.main a{padding:9px 11px;font-size:12.5px;font-weight:600;color:#565b63;white-space:nowrap;border-radius:10px;transition:.2s}
+nav.main a:hover,nav.main a.on{color:var(--green);background:#f0f9f4}
 .login{display:flex;align-items:center;gap:7px;margin-inline-start:auto;font-size:12.5px;font-weight:700;color:#565b63;padding:7px 11px;border-radius:10px}
 .login:hover{color:var(--green)}
 .login svg{width:17px;height:17px;stroke:currentColor}
 .hero{padding:22px 0 8px}
 .hbanner{position:relative;background:var(--gray);border-radius:20px;padding:30px;display:grid;grid-template-columns:1.05fr .95fr .8fr;gap:20px;align-items:center;overflow:hidden}
-.hbanner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),#ffffff2b,transparent 60%);pointer-events:none;z-index:2}
+.hbanner .mesh{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;background:radial-gradient(420px 220px at 18% 28%,#22a55b12,transparent),radial-gradient(360px 220px at 82% 72%,#c08a3e12,transparent);animation:mesh 12s ease-in-out infinite alternate}
+@keyframes mesh{to{transform:translate(18px,-12px) scale(1.06)}}
 .hbanner>*{position:relative;z-index:1}
 .hbanner h1{font-size:44px;font-size:clamp(28px,4.5vw,44px);font-weight:800;color:#2b2f36;line-height:1.6}
 .hbanner p{color:#5a5f66;font-weight:500;margin:2px 0 10px;font-size:13px}
@@ -86,7 +91,8 @@ nav.main a:hover{color:var(--green);background:#f0f9f4}
 .mini div{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10.5px;font-weight:700;color:#3c4148;padding:0 16px;border-inline-start:1px solid #d5d8db}
 .mini div:first-child{border:0;padding-right:0}
 .mini svg{width:22px;height:22px;stroke:var(--green-d)}
-.hbanner img{border-radius:16px;height:230px;width:100%;object-fit:cover;box-shadow:0 18px 40px rgba(0,0,0,.16)}
+.hbanner img{border-radius:16px;height:230px;width:100%;object-fit:cover;box-shadow:0 18px 40px rgba(0,0,0,.16);animation:kb 16s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08) translate(2%,-2%)}}
 .callbox{text-align:center}
 .callbox .nums{background:#3a3f45;color:#fff;border-radius:12px;padding:10px 22px;font-size:22px;font-size:clamp(16px,2.2vw,22px);font-weight:800;line-height:1.9;display:inline-block}
 .callbox b{display:block;font-size:28px;font-size:clamp(20px,2.8vw,28px);font-weight:800;color:#2b2f36;margin-top:8px}
@@ -99,9 +105,8 @@ nav.main a:hover{color:var(--green);background:#f0f9f4}
 #liveDate{color:var(--mut);font-weight:500}
 #online{color:var(--green-d);font-weight:800}
 .cdpill{margin-inline-start:auto;background:var(--pink);color:var(--red);border-radius:20px;padding:4px 13px;font-size:10.5px;font-weight:800}
-/* کارت‌های دسته: قهوه‌ای + سبز */
 .banners{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.bn{position:relative;background:#fffaf4;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;min-height:140px;cursor:pointer;transition:box-shadow .25s}
+.bn{position:relative;background:#fffaf4;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;min-height:140px;cursor:pointer;transition:box-shadow .25s;will-change:transform}
 .bn.big{min-height:200px}
 .bn .t b{color:#4a3325;font-size:clamp(15px,2vw,20px);font-weight:800;display:block;line-height:1.6}
 .bn .t b::after{content:'';display:block;width:26px;height:3px;border-radius:3px;background:var(--green);margin-top:6px}
@@ -126,13 +131,13 @@ section{padding:40px 0}
 .shead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:20px}
 .shead h2{font-size:21px;font-size:clamp(17px,2.2vw,21px);font-weight:800}
 .shead p{color:var(--mut);font-size:12px}
-.btnline{border:1px solid #d9dce0;background:#fff;border-radius:12px;padding:9px 22px;font-size:12px;font-weight:700;transition:.2s}
+.btnline{border:1px solid #d9dce0;background:#fff;border-radius:12px;padding:9px 22px;font-size:12px;font-weight:700;transition:.2s;position:relative;overflow:hidden}
 .btnline:hover{border-color:var(--green);color:var(--green)}
 .chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-.chip{border:1px solid var(--line);background:#fff;border-radius:30px;padding:6px 15px;font-size:10.5px;font-weight:700;color:#565b63;transition:.2s}
+.chip{border:1px solid var(--line);background:#fff;border-radius:30px;padding:6px 15px;font-size:10.5px;font-weight:700;color:#565b63;transition:.2s;position:relative;overflow:hidden}
 .chip.on{background:var(--green);border-color:var(--green);color:#fff}
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.pcard{position:relative;background:#fff;border-radius:14px;padding:11px 11px 14px;display:flex;flex-direction:column;text-align:start;transition:box-shadow .25s;overflow:hidden}
+.pcard{position:relative;background:#fff;border-radius:14px;padding:11px 11px 14px;display:flex;flex-direction:column;text-align:start;transition:box-shadow .25s;overflow:hidden;will-change:transform}
 .pcard:hover{box-shadow:var(--sh)}
 .pimg{position:relative;border-radius:12px;overflow:hidden;height:200px;background:#efe6da}
 .pimg img{width:100%;height:100%;object-fit:cover;transition:.5s}
@@ -145,7 +150,7 @@ section{padding:40px 0}
 .pprice .now{font-weight:800;font-size:13px;color:var(--green-d)}
 .pprice .now i{font-style:normal;font-size:10.5px;color:var(--mut);font-weight:500}
 .pprice .off{position:absolute;left:0;bottom:0;background:var(--pink);color:var(--red);font-size:9.5px;font-weight:800;padding:2px 8px;border-radius:8px}
-.add{width:100%;border:1px solid #bfe3cf;color:var(--green-d);border-radius:10px;padding:9px 6px;font-size:11.5px;font-weight:700;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff}
+.add{width:100%;border:1px solid #bfe3cf;color:var(--green-d);border-radius:10px;padding:9px 6px;font-size:11.5px;font-weight:700;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;position:relative;overflow:hidden}
 .add:hover{background:var(--green);border-color:var(--green);color:#fff}
 .add:active{transform:scale(.94)}
 .ble{display:block;margin:6px 4px 0;font-size:10.5px;font-weight:800;color:var(--green-d)}
@@ -158,6 +163,7 @@ section{padding:40px 0}
 .trust small{color:var(--mut);font-size:10.5px;display:block}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .step{background:#fffaf4;border:1px solid var(--line);border-radius:16px;padding:20px 12px;text-align:center;transition:.25s}
+.step:hover{transform:translateY(-4px);box-shadow:var(--sh)}
 .step i{font-style:normal;font-weight:900;font-size:26px;color:#e5d3bd;display:block}
 .step h4{margin:5px 0 3px;font-size:13px}
 .step p{font-size:11px;color:var(--mut)}
@@ -177,11 +183,13 @@ section{padding:40px 0}
 .srv h4{font-size:13px;margin-bottom:3px}
 .srv .f p{font-size:11px;color:var(--mut)}
 .tst{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.tst div{background:#fffaf4;border:1px solid var(--line);border-radius:16px;padding:18px;font-size:12px}
+.tst div{background:#fffaf4;border:1px solid var(--line);border-radius:16px;padding:18px;font-size:12px;transition:.25s}
+.tst div:hover{transform:translateY(-4px);box-shadow:var(--sh)}
 .stars{color:var(--gold);letter-spacing:2px}
 .tst b{display:block;margin-top:7px;color:var(--green-d);font-size:11px}
 .blog{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.post{background:#fffaf4;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.post{background:#fffaf4;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.post:hover{box-shadow:var(--sh);transform:translateY(-4px)}
 .post img{height:140px;width:100%;object-fit:cover}
 .post .bd{padding:13px}
 .post h4{font-size:12.5px}
@@ -193,11 +201,16 @@ section{padding:40px 0}
 .qa p{max-height:0;overflow:hidden;transition:.3s;padding:0 18px;font-size:12px;color:var(--mut)}
 .qa.open p{max-height:220px;padding-bottom:14px}
 .qa.open button svg{transform:rotate(180deg);stroke:var(--gold)}
-.cta{background:var(--gray);border-radius:20px;text-align:center;padding:42px 18px}
+.cta{background:var(--gray);border-radius:20px;text-align:center;padding:42px 18px;position:relative}
+.cta::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:20px;padding:1.5px;background:linear-gradient(120deg,#22a55b66,#c08a3e66,#22a55b66);background-size:220% 100%;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:shine 6s linear infinite;pointer-events:none}
+@keyframes shine{to{background-position:220% 0}}
 .cta h2{font-weight:800;font-size:20px;font-size:clamp(17px,2.6vw,20px);color:#2b2f36}
 .cta p{color:#5a5f66;margin:7px 0 18px;font-size:12.5px}
-.btn-g{background:var(--green);color:#fff;border-radius:12px;padding:11px 24px;font-weight:800;font-size:13px;display:inline-flex;gap:8px;align-items:center;transition:.2s;box-shadow:0 6px 0 #33231a}
-.btn-w{background:#fffaf4;border:1px solid #d9dce0;border-radius:12px;padding:11px 24px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;margin-inline-start:8px}
+.btn-g{background:var(--green);color:#fff;border-radius:12px;padding:11px 24px;font-weight:800;font-size:13px;display:inline-flex;gap:8px;align-items:center;transition:.2s;box-shadow:0 6px 0 #33231a;position:relative;overflow:hidden}
+.btn-w{background:#fffaf4;border:1px solid #d9dce0;border-radius:12px;padding:11px 24px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;margin-inline-start:8px;position:relative;overflow:hidden}
+.btn-w:hover{border-color:var(--gold);color:var(--gold)}
+.ripple{position:absolute;border-radius:50%;background:#22a55b2e;transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(3);opacity:0}}
 footer{background:#2b1d16;margin-top:46px;padding:42px 0 70px}
 footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:24px}
 footer h5{font-size:13px;margin-bottom:12px;color:#f3e5d3}
@@ -218,7 +231,7 @@ footer .fl a{display:block;font-size:11.5px;color:#c9b6a4;padding:3px 0}
 #top.show{opacity:1;pointer-events:auto}
 #top svg{width:18px;height:18px}
 .bnav{position:fixed;bottom:0;right:0;left:0;background:#fff;border-top:1px solid var(--line);display:none;justify-content:space-around;padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom));z-index:70}
-.bnav a{font-size:9.5px;font-weight:700;color:var(--mut);text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 8px;border-radius:10px}
+.bnav a{font-size:9.5px;font-weight:700;color:var(--mut);text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 8px;border-radius:10px;transition:.2s}
 .bnav a.on{color:var(--ink);background:#f2f3f5}
 .bnav svg{width:19px;height:19px;stroke:currentColor}
 .rv{opacity:0;transform:translateY(24px);transition:.7s}
@@ -288,7 +301,6 @@ footer .fl a{display:block;font-size:11.5px;color:#c9b6a4;padding:3px 0}
 #adlogin{position:absolute;top:0;left:0;right:0;bottom:0;background:#f6f1ea;display:flex;align-items:center;justify-content:center;z-index:5}
 #adlogin .box{background:#fffaf4;border:1px solid var(--line);border-radius:18px;padding:28px;width:340px;max-width:90%;text-align:center}
 #adlogin input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;outline:none;text-align:center}
-/* ══ موبایل: هدر دو ردیفه + کارت‌های عمودی مثل modakstar ══ */
 @media(max-width:1020px){
 .hbar{display:grid;grid-template-columns:auto 1fr auto auto auto;grid-template-areas:"logo logo logo logo theme" "burger search search profile cart";gap:10px;align-items:center}
 .hact{display:contents}
@@ -310,7 +322,6 @@ nav.main{display:none}
 .hbanner img{height:200px}
 .cdpill{margin-inline-start:0}
 .srv{grid-template-columns:1fr 1fr}
-/* کارت دسته: عکس بالا، متن پایین */
 .bn{flex-direction:column;align-items:stretch;gap:10px;padding:12px}
 .bn img{order:-1;width:100%;height:120px}
 .bn.big img{height:160px}
@@ -345,7 +356,7 @@ body{padding-bottom:62px}
       <button class="burger" onclick="toast('از نوار پایین استفاده کن 🙂')" aria-label="منو">☰</button>
       <button class="iconbtn" id="advBtn" aria-label="مشاور هوشمند"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="8" width="14" height="10" rx="3"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><circle cx="9.5" cy="12.5" r=".8" fill="currentColor" stroke="none"/><circle cx="14.5" cy="12.5" r=".8" fill="currentColor" stroke="none"/><path d="M9.5 15.5q2.5 1.6 5 0"/></svg></button>
       <button class="iconbtn" id="themeBtn" aria-label="تغییر تم"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg></button>
-      <a class="htel" href="tel:+982136917586"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="teln">۰۲۱-۳۶۹۱۷۵۸۶</span></a>
+      <a class="htel" href="tel:+982136917586"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="teln">۰۲۱-۳۶۹۷۵۸۶</span></a>
       <span class="sep"></span>
       <button class="profileBtn" onclick="toast('ورود | ثبت‌نام به‌زودی فعال می‌شود 🙂')" aria-label="پروفایل"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
       <button class="cartbox" onclick="goBale('order-general')" aria-label="سبد خرید"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span><b>سبد خرید</b><small id="cartTxt">خالی</small></span></button>
@@ -360,6 +371,7 @@ body{padding-bottom:62px}
 <main>
 <div class="hero"><div class="wrap">
   <div class="hbanner rv in">
+    <div class="mesh" aria-hidden="true"></div>
     <div>
       <h1 id="heroH1">خرید اعتباری</h1>
       <p id="heroP">همین حالا بخرید، بعداً پرداخت کنید!</p>
@@ -371,9 +383,9 @@ body{padding-bottom:62px}
       </div>
     </div>
     <img src="img/hero.jpg" onerror="this.onerror=null;this.src='https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open'" alt="ربات هوشمند با ستاره طلایی" fetchpriority="high" decoding="async">
-    <div class="callbox"><span class="nums teln">۰۲۱ ۳۶۹۱۷۵۸۶</span><b>تماس بگیرید</b></div>
+    <div class="callbox"><span class="nums teln">۰۲ ۳۶۹۱۷۵۸۶</span><b>تماس بگیرید</b></div>
   </div>
-  <div class="greenbar"><span class="fl" id="flames">☕☕☕</span><a id="noticeA" href="tel:+982136917586">خرید اعتباری !!! تماس بگیرید</a></div>
+  <div class="greenbar"><span class="fl" id="flames">☕☕</span><a id="noticeA" href="tel:+982136917586">خرید اعتباری !!! تماس بگیرید</a></div>
   <div class="ticker rv"><span class="dot"></span><span id="tickTxt">سفارش جدید: ربات فروش — تهران · ۲ دقیقه پیش</span><span id="liveDate"></span><span id="online">● ۱۲۴ آنلاین</span><span class="cdpill">⏳ پایان تخفیف‌ها: <b id="cd">۰۰:۰۰:۰۰</b></span></div>
   <div class="banners rv">
     <div class="bn big" onclick="setCat('ربات',true)"><img src="img/cat-sales.jpg" onerror="this.onerror=null;this.src='https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open'" alt="ربات فروش" decoding="async"><div class="t"><b>ربات‌های فروش</b><span>پاسخ‌گویی و ثبت سفارش</span></div></div>
@@ -660,6 +672,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const fa=n=>Number(n).toLocaleString('fa-IR');
 const p2=n=>Number(n).toLocaleString('fa-IR',{minimumIntegerDigits:2,useGrouping:false});
 const enD=s=>String(s).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+const FINE=matchMedia('(pointer:fine)').matches;
 const FBIMG='https://u234128125.p.clickup-attachments.com/u234128125/1d73926f-3e4d-4905-84b1-8a8689def5b8/generated-image-7a885d4f-efe9-4444-9573-7a04b107f2e0.png?view=open';
 const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
 let cart=0,curCat='همه',curSort='pop',query='',more=false;
@@ -669,6 +682,18 @@ function hideLoader(){$('#loader').classList.add('hide')}
 if(document.readyState==='complete')setTimeout(hideLoader,400);else addEventListener('load',()=>setTimeout(hideLoader,400));
 setTimeout(hideLoader,2500);
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)}
+/* Ripple ظریف روی دکمه‌ها */
+function ripple(e){const b=e.currentTarget,r=b.getBoundingClientRect(),s=document.createElement('span');s.className='ripple';const d=Math.max(r.width,r.height);s.style.width=s.style.height=d+'px';s.style.left=(e.clientX-r.left-d/2)+'px';s.style.top=(e.clientY-r.top-d/2)+'px';b.appendChild(s);setTimeout(()=>s.remove(),650)}
+$$('.add,.btn-g,.btnline,.chip,.cartbox').forEach(b=>b.addEventListener('click',ripple));
+/* Tilt ملایم + مغناطیس (فقط دسکتاپ) */
+if(FINE){
+  $$('.pcard,.bn').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform='perspective(900px) rotateY('+(x*4).toFixed(2)+'deg) rotateX('+(-y*4).toFixed(2)+'deg) translateY(-3px)'});el.addEventListener('mouseleave',()=>el.style.transform='')});
+  $$('.btn-g,.btn-w,.btnline').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.12).toFixed(1)+'px,'+((e.clientY-r.top-r.height/2)*.2).toFixed(1)+'px)'});b.addEventListener('mouseleave',()=>b.style.transform='')});
+  const g=document.createElement('div');g.id='glow';g.style.display='block';document.body.appendChild(g);
+  let gx=innerWidth/2,gy=innerHeight/2,tx=gx,ty=gy;
+  addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+  (function loop(){gx+=(tx-gx)*.09;gy+=(ty-gy)*.09;g.style.left=gx+'px';g.style.top=gy+'px';requestAnimationFrame(loop)})();
+}
 function addCart(n,e){cart++;LS.set('BR_CART',LS.get('BR_CART',0)+1);$('#cartTxt').textContent=fa(cart)+' قلم';toast('«'+n+'» به سبد اضافه شد 🛒');
   var p=(PRODS||scrape()).find(function(x){return x.name===n})||{};CART.push({n:n,pr:p.price||0});LS.set('BR_CART_ITEMS',CART);renderCart();
   var rel=(PRODS||scrape()).filter(function(x){return x.cat===p.cat&&x.name!==n})[0];if(rel)setTimeout(function(){toast('🤖 پیشنهاد مشابه: '+rel.title)},2700)}
@@ -682,8 +707,8 @@ function apply(){var g=$('#pgrid'),cards=$$('.pcard');
   var order={pop:(a,b)=>b.dataset.pop-a.dataset.pop,new:(a,b)=>b.dataset.new-a.dataset.new,cheap:(a,b)=>a.dataset.price-b.dataset.price,exp:(a,b)=>b.dataset.price-a.dataset.price};
   cards.sort(order[curSort]).forEach(c=>g.appendChild(c));
   if(query)toast(fa(cards.filter(c=>c.style.display!=='none').length)+' محصول پیدا شد')}
-if((localStorage.getItem('BR_THEME')||'coffee')==='coffee'){document.body.classList.add('coffee');$('#flames').textContent='☕☕☕'}else $('#flames').textContent='🔥🔥🔥';
-$('#themeBtn').onclick=()=>{var c=document.body.classList.toggle('coffee');localStorage.setItem('BR_THEME',c?'coffee':'green');$('#flames').textContent=c?'☕☕☕':'🔥🔥🔥';toast(c?'تم قهوه‌ای ☕':'تم سبز 💚')};
+if((localStorage.getItem('BR_THEME')||'coffee')==='coffee'){document.body.classList.add('coffee');$('#flames').textContent='☕☕'}else $('#flames').textContent='🔥🔥';
+$('#themeBtn').onclick=()=>{var c=document.body.classList.toggle('coffee');localStorage.setItem('BR_THEME',c?'coffee':'green');$('#flames').textContent=c?'☕☕☕':'🔥🔥';toast(c?'تم قهوه‌ای ☕':'تم سبز 💚')};
 setInterval(()=>{$('#liveDate').textContent='📅 '+new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())},1000);
 const words=['ربات فروش هوشمند','دستیار سازمانی','اتوماسیون سفارش','سایت فروش‌محور','تولید محتوای AI'];let wi=0,ci=0,del=false;
 (function type(){var w=words[wi];ci+=del?-1:1;var el=$('#type');if(el)el.textContent=w.slice(0,ci);if(!del&&ci===w.length){del=true;return setTimeout(type,1500)}if(del&&ci===0){del=false;wi=(wi+1)%words.length}setTimeout(type,del?35:90)})();
@@ -695,9 +720,16 @@ setInterval(cd,1000);cd();
 const SPIMG=['img/cat-sales.jpg','https://u234128125.p.clickup-attachments.com/u234128125/93f5c0d8-65ee-454a-b7d4-5795b9738891/generated-image-8b71378c-4e36-4fb7-af86-2d9d24a93b71.png?view=open','img/cat-auto.jpg','https://u234128125.p.clickup-attachments.com/u234128125/2cb162b8-d255-4b8b-b3be-fd2b60c330a1/generated-image-a54a4698-2e80-4bee-bfec-0f24c9045b60.png?view=open','img/cat-web.jpg'];
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.1});
 $$('.rv').forEach(el=>rio.observe(el));
+/* ScrollSpy: هایلایت خودکار منو */
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id='#'+e.target.id;$$('nav.main a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')===id));$$('.bnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')===id))}}),{rootMargin:'-40% 0px -55% 0px'});
+['products','services','blog','faq','about'].forEach(id=>{const el=document.getElementById(id);el&&spy.observe(el)});
 $$('.flip').forEach(f=>f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('flipped')}}));
 $('#top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-addEventListener('scroll',()=>{$('#top').classList.toggle('show',scrollY>600);var h=document.documentElement,dh=h.scrollHeight-innerHeight;$('#prog').style.width=(dh>0?(scrollY/dh*100):0)+'%'},{passive:true});
+addEventListener('scroll',()=>{
+  $('#top').classList.toggle('show',scrollY>600);
+  document.querySelector('header').classList.toggle('scrolled',scrollY>10);
+  var h=document.documentElement,dh=h.scrollHeight-innerHeight;$('#prog').style.width=(dh>0?(scrollY/dh*100):0)+'%';
+},{passive:true});
 function aiCfg(){return LS.get('BR_AI',{on:false,base:'https://api.avalai.ir/v1/',key:'',model:'gpt-4o-mini',sys:'تو دستیار هوشمند فروشگاه «باشگاه ربات های هوشمند» هستی. کوتاه، دوستانه و به فارسی جواب بده.',temp:0.7})}
 async function aiAsk(msg,hist){var c=aiCfg();var r=await fetch(c.base.replace(/\/?$/,'/')+'chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+c.key},body:JSON.stringify({model:c.model,temperature:c.temp,messages:[{role:'system',content:c.sys},...(hist||[]),{role:'user',content:msg}]})});if(!r.ok)throw 0;var j=await r.json();return j.choices[0].message.content}
 function aiStateUI(){var c=aiCfg();$('#adAiState').textContent=c.on&&c.key?'AI فعال ✅':'AI خاموش';$('#aiBadge').textContent=c.on&&c.key?'هوش مصنوعی واقعی 🤖':'آنلاین'}
